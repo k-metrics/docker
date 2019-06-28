@@ -1,4 +1,4 @@
-# docker
+# kmetrics/docker
 rocker/tidyverse based docker image for machine learning with R
 
 * jverse
