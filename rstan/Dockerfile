@@ -6,6 +6,6 @@ FROM kmetrics/mlwr:latest
 
 # for tidymodels
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  tidymodels tidytext
+  rstan
 
 CMD ["/init"]

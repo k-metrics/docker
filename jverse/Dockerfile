@@ -23,9 +23,10 @@ RUN apt-get update && apt-get install -y \
 #     https://demo.rstudiopm.com/client/#/
 RUN apt-get update -qq && apt-get install -y \
   imagemagick libcurl4-openssl-dev libfreetype6-dev libgl1-mesa-dev \
-  libglu1-mesa-dev libjpeg-dev libmagick++-dev libopenmpi2 \
+  libglu1-mesa-dev libgmp3-dev libjpeg-dev libmagick++-dev libopenmpi2 \
   libopenmpi-dev libpng-dev libpoppler-cpp-dev libpoppler-glib-dev \
-  libtcl8.6 zlib1g-dev
+  libtcl8.6 zlib1g-dev \
+  pandoc-citeproc pandoc
   
   # On Ubuntu 16.04 or 18.04, use PPA
   #   sudo add-apt-repository -y ppa:opencpu/poppler
