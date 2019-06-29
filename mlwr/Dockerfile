@@ -21,4 +21,9 @@ RUN Rscript -e "BiocManager::install(c('genefilter'))" \
   && install2.r --error --skipinstalled --repos https://cloud.r-project.org \
     modeest
 
+# install package from GitHub
+RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
+                                         build_opts = c('--no-resave-data', \
+                                         '--no-manual'))"
+
 CMD ["/init"]
