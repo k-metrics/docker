@@ -14,20 +14,20 @@ R.
 
 公開しているコンテナイメージは以下の通りです。
 
-| image      | base            | descriptions                               | build     |
-| ---------- | --------------- | ------------------------------------------ | --------- |
-| jverse     | rocker/verse    | Japanized base image                       | automated |
-| mlwr       | kmetrics/jverse | Add R packages for Machine Learnign with R | automated |
-| tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | local     |
+| image      | base         | descriptions                               | build     |
+| ---------- | ------------ | ------------------------------------------ | --------- |
+| jverse     | rocker/verse | Japanized base image                       | automated |
+| mlwr       | jverse       | Add R packages for Machine Learnign with R | automated |
+| tidymodels | mlwr         | Add tidymodels and tidytext package        | local     |
 
 ### kmetrics/jverse
 
 [rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに以下を追加しています。
 
-1.  日本語ロケールの追加設定
+1.  日本語ロケールの追加
 2.  日本語フォント（IPA and
 Noto）の追加
-3.  Rパッケージに必要なOSのライブラリ群の追加
+3.  Rパッケージに必要なOSライブラリ群の追加
 4.  Java環境の追加と設定
 
 ### kmetrics/mlwr
