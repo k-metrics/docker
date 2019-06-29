@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-rocker/verse based docker images for Machine Learning with R.
+`rocker/verse` based docker images for Machine Learning with R.
 
 
 ## About
@@ -19,11 +19,11 @@ rocker/verse based docker images for Machine Learning with R.
 ## About container images
 公開しているコンテナイメージは以下の通りです。
 
-image      | base            | descriptions                               | Automated Build
+image      | base            | descriptions                               | build
 -----------|-----------------|--------------------------------------------|-----
-jverse     | rocker/verse    | Japanized base image                       | Yes
-mlwr       | kmetrics/jverse | Add R packages for Machine Learnign with R | Yes
-tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | No
+jverse     | rocker/verse    | Japanized base image                       | automated
+mlwr       | kmetrics/jverse | Add R packages for Machine Learnign with R | automated
+tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | local
 
 
 ### kmetrics/jverse
@@ -31,8 +31,8 @@ tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | No
 
 1. 日本語ロケールの追加設定
 1. 日本語フォント（IPA and Noto）の追加
-1. Rパッケージに必要なOSのライブラリ群
-1. Java環境
+1. Rパッケージに必要なOSのライブラリ群の追加
+1. Java環境の追加と設定
 
 
 ### kmetrics/mlwr
@@ -44,5 +44,5 @@ tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | No
 
 
 ## Licencs
-Dockerfiles are licensed under the GPL 2 or later.
+Dockerfiles are licensed under the GPL 2 or later.  
 Other documents are licensed under "CC BY-NC-SA 4.0, Sampo Suzuki" 

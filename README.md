@@ -1,7 +1,7 @@
 k-metrics docker container images
 ================
 
-rocker/verse based docker images for Machine Learning with
+`rocker/verse` based docker images for Machine Learning with
 R.
 
 ## About
@@ -14,11 +14,11 @@ R.
 
 公開しているコンテナイメージは以下の通りです。
 
-| image      | base            | descriptions                               | Automated Build |
-| ---------- | --------------- | ------------------------------------------ | --------------- |
-| jverse     | rocker/verse    | Japanized base image                       | Yes             |
-| mlwr       | kmetrics/jverse | Add R packages for Machine Learnign with R | Yes             |
-| tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | No              |
+| image      | base            | descriptions                               | build     |
+| ---------- | --------------- | ------------------------------------------ | --------- |
+| jverse     | rocker/verse    | Japanized base image                       | automated |
+| mlwr       | kmetrics/jverse | Add R packages for Machine Learnign with R | automated |
+| tidymodels | kmetrics/mlwr   | Add tidymodels and tidytext package        | local     |
 
 ### kmetrics/jverse
 
@@ -27,8 +27,8 @@ R.
 1.  日本語ロケールの追加設定
 2.  日本語フォント（IPA and
 Noto）の追加
-3.  Rパッケージに必要なOSのライブラリ群
-4.  Java環境
+3.  Rパッケージに必要なOSのライブラリ群の追加
+4.  Java環境の追加と設定
 
 ### kmetrics/mlwr
 
@@ -40,5 +40,5 @@ Noto）の追加
 
 ## Licencs
 
-Dockerfiles are licensed under the GPL 2 or later. Other documents are
-licensed under “CC BY-NC-SA 4.0, Sampo Suzuki”
+Dockerfiles are licensed under the GPL 2 or later.  
+Other documents are licensed under “CC BY-NC-SA 4.0, Sampo Suzuki”
