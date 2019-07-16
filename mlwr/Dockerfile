@@ -1,4 +1,4 @@
-FROM kmetrics/jverse:latest
+FROM mzdgnk/jverse:3.6.1
 
 # Install R packages for Machine Learning with R (alphanureric order) and others
 # for Machine Learning with R
@@ -14,7 +14,7 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 
 # Other Packages
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  BiocManager DT ggrepel GGally profvis rmdformats skimr summarytools
+  BiocManager DiagrammeR DT ggrepel GGally profvis rmdformats skimr summarytools
 
 # `modeest` package needs Bioc package
 RUN Rscript -e "BiocManager::install(c('genefilter'))" \
