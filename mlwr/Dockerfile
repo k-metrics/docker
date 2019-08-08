@@ -14,7 +14,7 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 
 # Other Packages
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  BiocManager DT ggrepel GGally profvis rmdformats skimr summarytools
+  BiocManager DT ggrepel GGally learnr profvis rmdformats skimr summarytools
 
 # `modeest` package needs Bioc package
 RUN Rscript -e "BiocManager::install(c('genefilter'))" \
