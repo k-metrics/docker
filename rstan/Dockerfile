@@ -5,6 +5,6 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/
 
-RUN install2.r --error --deps TRUE \
+RUN install2.r --error --skipinstalled \
     rstan \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
