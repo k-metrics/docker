@@ -23,6 +23,7 @@ R.
 | jverse     | rocker/verse:3.6.0 | Japanized base image                       | automated |
 | mlwr       | jverse             | Add R packages for Machine Learnign with R | automated |
 | tidymodels | mlwr               | Add tidymodels package                     | local     |
+| blogdown   | tidymodels         | Add blogdown package and hugo              | automated |
 
 　
 
@@ -50,13 +51,20 @@ Noto）の追加
 
   - `tidymodels` imports `tidyposterior`  
   - `tidyposterior` imports `rstanarm`  
-  - `rstanarm` imports `rstan`
+  - `rstanarm` imports
+`rstan`
+
+　
+
+### blogdown
+
+`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境を追加しています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を使って追加してください。
 
 　
 
 ## Usage
 
-Dockerの導入に関しては省略しますが、使い方の基本は`rocker/*`と同じで必ずパスワードの指定を行ってください。
+Dockerの導入に関しては省略しますが、使い方の基本は`rocker/*`と同じで **必ずパスワードを指定** してください。
 
 ``` bash
 sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudio \
