@@ -7,26 +7,26 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-`rocker/verse` based docker images for Machine Learning with R.
+`rocker/verse` based docker container images for Machine Learning with R.
 
 　  
 
-## About
+## About this repository
 本リポジトリは[rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに日本語環境で[データ分析勉強会](https://sites.google.com/site/kantometrics/2019)におけるテキストである[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードが動かせるコンテナイメージを作成し公開しています。  
 　  
-なお、公開しているコンテナイメージを使用することによって生じる、いかなる直接的・間接的損害について著作者ならびに勉強会運営者はいかなる責任・サポート義務は負いません。
+なお、公開しているコンテナイメージを使用することによって生じる、いかなる直接的・間接的損害について著作者ならびに勉強会運営者はいかなる責任・サポート義務を負いません。
 
 　  
 
 ## Container images
 公開しているコンテナイメージは以下の通りです。
 
-image      | base iamge   | descriptions                               | build
+image      | base image   | descriptions                               | build
 -----------|--------------|--------------------------------------------|-----
 jverse     | rocker/verse:3.6.0 | Japanized base image                 | automated
 mlwr       | jverse       | Add R packages for Machine Learnign with R | automated
 tidymodels | mlwr         | Add tidymodels package                     | local
-blogdown   | tidymodels   | Add blogdown package and hugo              | automated
+blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automated
 
 　  
 
@@ -55,7 +55,7 @@ blogdown   | tidymodels   | Add blogdown package and hugo              | automat
 　  
 
 ### blogdown
-`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境を追加しています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を使って追加してください。  
+`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境を追加しています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。  
 
 　  
 
@@ -73,7 +73,7 @@ sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudi
 リンクさせたいローカルパス | /home/user/R | 任意のローカルパス、Windowsの場合"/C/..."となる点に注意
 パスワード                 | password    | 任意のパスワード
 コンテナ名                 | tidymodels  | 任意のコンテナ名称
-イメージ名                 | tidymodels  | jverse, mlwr, tidymodelsから選択
+イメージ名                 | tidymodels  | jverse, mlwr, tidymodels, blogdownから選択
 
 　  
 
