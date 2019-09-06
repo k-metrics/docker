@@ -23,7 +23,8 @@ RUN apt-get update -qq && apt-get install -y \
   libopenmpi-dev libpng-dev libpoppler-cpp-dev libpoppler-glib-dev \
   libtcl8.6 zlib1g-dev \
   pandoc-citeproc pandoc \
-  tcl8.6-dev tcl-dev tk8.6-dev tk-dev tcllib tklib
+  tcl8.6-dev tcl-dev tk8.6-dev tk-dev tcllib tklib \
+  pdfinfo pdftotext
 
 # Get and Setup Java for R
 RUN apt-get update -qq && \
@@ -32,5 +33,3 @@ RUN apt-get update -qq && \
       default-jdk \
       default-jre && \
   	R CMD javareconf
-
-CMD ["/init"]
