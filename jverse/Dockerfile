@@ -24,7 +24,7 @@ RUN apt-get update -qq && apt-get install -y \
   libtcl8.6 zlib1g-dev \
   pandoc-citeproc pandoc \
   tcl8.6-dev tcl-dev tk8.6-dev tk-dev tcllib tklib \
-  pdfinfo pdftotext
+  poppler-utils
 
 # Get and Setup Java for R
 RUN apt-get update -qq && \
