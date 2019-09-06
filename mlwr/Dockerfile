@@ -16,7 +16,8 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 
 # Other Packages
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  BiocManager DiagrammeR DT ggrepel GGally learnr profvis rmdformats skimr summarytools \
+  BiocManager DiagrammeR DT ggrepel GGally learnr pdftools profvis \
+  rmdformats skimr summarytools \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # `modeest` package needs Bioc package
@@ -29,5 +30,3 @@ RUN Rscript -e "BiocManager::install(c('genefilter'))" \
 RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
                                          build_opts = c('--no-resave-data', \
                                          '--no-manual'))"
-
-CMD ["/init"]
