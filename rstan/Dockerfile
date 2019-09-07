@@ -5,7 +5,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/
 
-RUN Rscript -e "install.packages(c('rstan'))"
+RUN Rscript -e "install.packages(c('rstan'))" \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # RUN install2.r --error --skipinstalled \
