@@ -16,7 +16,7 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 
 # Other Packages
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  BiocManager DiagrammeR DT ggrepel GGally learnr pdftools profvis \
+  BiocManager DiagrammeR DT ggparty ggrepel GGally learnr pdftools profvis \
   rmdformats skimr summarytools \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
