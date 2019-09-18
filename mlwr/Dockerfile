@@ -27,6 +27,9 @@ RUN Rscript -e "BiocManager::install(c('genefilter'))" \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # install package from GitHub
+# WARNING: C50 package has bugs to plot tree, if you need fixed version,
+# to install development versionon GitHub
 RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
                                          build_opts = c('--no-resave-data', \
                                          '--no-manual'))"
+
