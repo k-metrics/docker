@@ -22,14 +22,14 @@ R.
 | ---------- | ------------------ | ------------------------------------------ | --------- |
 | jverse     | rocker/verse:3.6.0 | Japanized base image                       | automated |
 | mlwr       | jverse             | Add R packages for Machine Learnign with R | automated |
-| tidymodels | mlwr               | Add tidymodels package                     | local     |
+| tidymodels | mlwr               | Add tidymodels related packages            | automated |
 | blogdown   | tidymodels         | Add blogdown package and Hugo executable   | automated |
 
 　
 
 ### jverse
 
-[rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに以下を追加しています。
+[rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに以下をインストールしています。
 
 1.  日本語ロケールの追加
 2.  日本語フォント（IPA and
@@ -41,13 +41,13 @@ Noto）の追加
 
 ### mlwr
 
-`jverse`をベースに[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードを動かすために必要なRパッケージを追加しています。
+`jverse`をベースに[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードを動かすために必要なRパッケージをインストールしています。
 
 　
 
 ### tidymodels
 
-`mlwr`をベースに`tidymodels`パッケージを追加しています。以下の依存関係により関連パッケージとしてインストールされる`rstan`パッケージがdockerhub環境ではビルドできないため、ローカルビルドしたものをpushしています。
+`mlwr`をベースに`tidymodels`パッケージをインストールしたいのですが、以下の依存関係により関連パッケージとしてインストールされる`rstan`パッケージがdockerhub環境ではビルドできないため、`tidymodels`パッケージと`tidyposterior`パッケージを除いたパッケージをインストールします。
 
   - `tidymodels` imports `tidyposterior`  
   - `tidyposterior` imports `rstanarm`  
@@ -58,7 +58,8 @@ Noto）の追加
 
 ### blogdown
 
-`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境を追加しています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。
+`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境をインストールしています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。  
+なお、`C50`パッケージにはプロット関連のバグがあるため暫定的にGitHubの開発版もインストールしています。
 
 　
 
