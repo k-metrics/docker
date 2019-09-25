@@ -1,6 +1,7 @@
 FROM kmetrics/mlwr:latest
 
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  tidymodels
-
-CMD ["/init"]
+  broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
+  purrr recipes rlang rsample rstudioapi tibble tidypredict yardstick
+  
+  # tidymodels tidyposterior
