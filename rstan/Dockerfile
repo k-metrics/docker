@@ -9,5 +9,5 @@ FROM kmetrics/tidymodels:3.6.1
 #     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
  RUN install2.r --error --skipinstalled --deps FALSE \
-    rstan 
+    rstan tidymodels
 #    && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
