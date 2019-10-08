@@ -1,4 +1,4 @@
-FROM rocker/tidymodels:3.6.1
+FROM kmetrics/tidymodels:3.6.1
 
 # RUN apt-get update \
 # && apt-get install -y --no-install-recommends apt-utils ed libnlopt-dev \
