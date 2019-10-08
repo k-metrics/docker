@@ -1,4 +1,4 @@
-FROM kmetrics/tidymodels:3.6.1
+FROM kmetrics/tidymodels:latest
 
 # RUN apt-get update \
 # && apt-get install -y --no-install-recommends apt-utils ed libnlopt-dev \
@@ -8,6 +8,6 @@ FROM kmetrics/tidymodels:3.6.1
 # RUN Rscript -e "install.packages(c('rstan'))" \
 #     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
- RUN install2.r --error --skipinstalled --deps FALSE \
-    rstan tidymodels
+RUN install2.r --error --skipinstalled --deps FALSE \
+  rstan
 #    && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
