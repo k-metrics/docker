@@ -11,7 +11,7 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 
 # for model and infer process
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  car FNN iBreakDown kknn klaR MLmetrics ranger \
+  car FNN iBreakDown kknn klaR MLmetrics olsrr ranger \
   && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # Other Packages
