@@ -18,12 +18,13 @@ R.
 
 公開しているコンテナイメージは以下の通りです。
 
-| image      | base image         | descriptions                               | build     |
-| ---------- | ------------------ | ------------------------------------------ | --------- |
-| jverse     | rocker/verse:3.6.0 | Japanized base image                       | automated |
-| mlwr       | jverse             | Add R packages for Machine Learnign with R | automated |
-| tidymodels | mlwr               | Add tidymodels related packages            | automated |
-| blogdown   | tidymodels         | Add blogdown package and Hugo executable   | automated |
+| image           | base image         | descriptions                               | build     |
+| --------------- | ------------------ | ------------------------------------------ | --------- |
+| jverse          | rocker/verse:3.6.0 | Japanized base image                       | automated |
+| mlwr            | jverse             | Add R packages for Machine Learnign with R | automated |
+| tidymodels      | mlwr               | Add tidymodels related packages            | automated |
+| blogdown        | tidymodels         | Add blogdown package and Hugo executable   | automated |
+| tidymodels:full | blogdown           | Add tidymodels and tidyposterior package   | manual    |
 
 　
 
@@ -54,6 +55,14 @@ Noto）の追加
   - `rstanarm` imports
 `rstan`
 
+`tidymodels`パッケージが必要な場合はDockerfileを修正の上、ローカルビルドしてください。
+
+　
+
+#### tidymodels:full
+
+`blogdown`をベースに`tidymodels`パッケージと依存パッケージすべてをローカルビルドでインストールしているバージョンです。ローカルビルドなので必ずしも`blogdown:latest`と同期がとれているとは限りません。
+
 　
 
 ### blogdown
@@ -69,7 +78,7 @@ Dockerの導入に関しては省略しますが、使い方の基本は`rocker/
 
 ``` bash
 sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudio \
-  -e PASSWORD=パスワード --name コンテナ名 kmetrics/イメージ名
+  -e PASSWORD=パスワード --name コンテナ名 kmetrics/イメージ名:タグ
 ```
 
 | 設定項目          | 設定例          | 説明                                     |
@@ -78,6 +87,7 @@ sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudi
 | パスワード         | password     | 任意のパスワード                               |
 | コンテナ名         | tidymodels   | 任意のコンテナ名称                              |
 | イメージ名         | tidymodels   | jverse, mlwr, tidymodels, blogdownから選択 |
+| :タグ           | :3.6.1       | 省略時は:latest                            |
 
 　
 

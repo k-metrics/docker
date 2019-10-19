@@ -27,6 +27,7 @@ jverse     | rocker/verse:3.6.0 | Japanized base image                 | automat
 mlwr       | jverse       | Add R packages for Machine Learnign with R | automated
 tidymodels | mlwr         | Add tidymodels related packages            | automated
 blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automated
+tidymodels:full | blogdown | Add tidymodels and tidyposterior package  | manual
 
 　  
 
@@ -56,6 +57,11 @@ blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automat
 
 　  
 
+#### tidymodels:full
+`blogdown`をベースに`tidymodels`パッケージと依存パッケージすべてをローカルビルドでインストールしているバージョンです。ローカルビルドなので必ずしも`blogdown:latest`と同期がとれているとは限りません。
+
+　  
+
 ### blogdown
 `tidymodels`をベースに`blogdown`パッケージとHugoの実行環境をインストールしています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。  
 なお、`C50`パッケージにはプロット関連のバグがあるため暫定的にGitHubの開発版もインストールしています。  
@@ -67,7 +73,7 @@ Dockerの導入に関しては省略しますが、使い方の基本は`rocker/
 
 ```{bash, eval=FALSE}
 sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudio \
-  -e PASSWORD=パスワード --name コンテナ名 kmetrics/イメージ名
+  -e PASSWORD=パスワード --name コンテナ名 kmetrics/イメージ名:タグ
 ```
 
 
@@ -77,6 +83,7 @@ sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudi
 パスワード                 | password    | 任意のパスワード
 コンテナ名                 | tidymodels  | 任意のコンテナ名称
 イメージ名                 | tidymodels  | jverse, mlwr, tidymodels, blogdownから選択
+:タグ                      | :3.6.1      | 省略時は:latest
 
 　  
 
