@@ -28,7 +28,7 @@ mlwr       | jverse       | Add R packages for Machine Learnign with R | automat
 tidymodels | mlwr         | Add tidymodels related packages            | automated
 blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automated
 tidymodels:full | blogdown | Add tidymodels and tidyposterior package  | manual
-keras      | rocker/tensorflow:3.6.1 |
+keras      | rocker/tensorflow:3.6.1 | blogdown + keras                | automated
 
 　  
 
