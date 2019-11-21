@@ -1,5 +1,5 @@
 # Base container
-FROM rocker/tensorflow:3.6.1
+FROM rocker/ml-gpu:3.6.1
 
 
 #### Japanized ################################################################
@@ -33,12 +33,12 @@ RUN apt-get update -qq && apt-get install -y \
 
 ### Java ######################################################################
 # Get and Setup Java for R
-RUN apt-get update -qq && \
-    apt-get -y --no-install-recommends install \
-      cmake \
-      default-jdk \
-      default-jre \
-    && R CMD javareconf
+# RUN apt-get update -qq && \
+#   apt-get -y --no-install-recommends install \
+#   cmake \
+#   default-jdk \
+#   default-jre \
+#   && R CMD javareconf
 
 
 ### R packages for modeling ###################################################
