@@ -25,10 +25,12 @@ image      | base image   | descriptions                               | build
 -----------|--------------|--------------------------------------------|-----
 jverse     | rocker/verse:3.6.1 | Japanized base image                 | automated
 mlwr       | jverse       | Add R packages for Machine Learnign with R | automated
-tidymodels | mlwr         | Add tidymodels related packages            | automated
+tidymodels | mlwr         | Add tidymodels package                     | automated
 blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automated
-tidymodels:full | blogdown | Add tidymodels and tidyposterior package  | manual
-keras      | rocker/tensorflow:3.6.1 | blogdown + keras                | automated
+keras      | rocker/tensorflow:3.6.1 | Japanized image                 | automated
+keras-gpu  | rocker/tensorflow-gpu:3.6.1 | keras w/ GPU support        | automated
+ml         | rocker/ml:3.6.1 | Japanized image                         | automated
+ml-gpu     | rocker/ml-gpu:3.6.1 | ml w/ GPU support                   | automated
 
 　  
 
@@ -43,29 +45,34 @@ keras      | rocker/tensorflow:3.6.1 | blogdown + keras                | automat
 　  
 
 ### mlwr
-`jverse`をベースに[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードを動かすために必要なRパッケージをインストールしています。
+`kmetrics/jverse`をベースに[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードを動かすために必要なRパッケージをインストールしています。
 
 　  
 
 ### tidymodels
-`mlwr`をベースに`tidymodels`パッケージをインストールしたいのですが、以下の依存関係により関連パッケージとしてインストールされる`rstan`パッケージがdockerhub環境ではビルドできないため、`tidymodels`パッケージと`tidyposterior`パッケージを除いたパッケージをインストールします。  
+`kmetrics/mlwr`をベースに`tidymodels`パッケージをインストールしたいのですが、以下の依存関係により関連パッケージとしてインストールされる`rstan`パッケージがDockerHub環境ではビルドできないため不完全な形でのインストールとなります。  
 
 * `tidymodels` imports `tidyposterior`  
 * `tidyposterior` imports `rstanarm`  
 * `rstanarm` imports `rstan`
 
-`tidymodels`パッケージが必要な場合はDockerfileを修正の上、ローカルビルドしてください。
-
-　  
-
-#### tidymodels:full
-`blogdown`をベースに`tidymodels`パッケージと依存パッケージすべてをローカルビルドでインストールしているバージョンです。ローカルビルドなので必ずしも`blogdown:latest`と同期がとれているとは限りません。
+`tidymodels`パッケージを完全な形でインストールしたい場合にはローカルビルドしてください。
 
 　  
 
 ### blogdown
-`tidymodels`をベースに`blogdown`パッケージとHugoの実行環境をインストールしています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。  
-なお、`C50`パッケージにはプロット関連のバグがあるため暫定的にGitHubの開発版もインストールしています。  
+`kmetrics/tidymodels`をベースに`blogdown`パッケージとHugoの実行環境をインストールしています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。  
+なお、`C50`パッケージにはプロット関連のバグがあるため暫定的にGitHubの開発版をインストールしています。  
+
+　  
+
+### keras/keras-gpu
+[rocker/tensorflow <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow){target="_blank" title="DockerHub"}, [rocker/tensorflow-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。
+
+　  
+
+### ml/ml-gpu
+[rocker/ml <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml){target="_blank" title="DockerHub"}, [rocker/ml-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。
 
 　  
 
@@ -83,7 +90,7 @@ sudo docker run -p 8787:8787 -v リンクさせたいローカルパス:/home/rs
 リンクさせたいローカルパス | /home/user/R | 任意のローカルパス、Windowsの場合"/C/..."となる点に注意
 パスワード                 | password    | 任意のパスワード
 コンテナ名                 | tidymodels  | 任意のコンテナ名称
-イメージ名                 | tidymodels  | jverse, mlwr, tidymodels, blogdownから選択
+イメージ名                 | tidymodels  | 実行させたいイメージ名を指定
 :タグ                      | :3.6.1      | 省略時は:latest
 
 　  
