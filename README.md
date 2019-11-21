@@ -18,13 +18,14 @@ R.
 
 公開しているコンテナイメージは以下の通りです。
 
-| image           | base image         | descriptions                               | build     |
-| --------------- | ------------------ | ------------------------------------------ | --------- |
-| jverse          | rocker/verse:3.6.1 | Japanized base image                       | automated |
-| mlwr            | jverse             | Add R packages for Machine Learnign with R | automated |
-| tidymodels      | mlwr               | Add tidymodels related packages            | automated |
-| blogdown        | tidymodels         | Add blogdown package and Hugo executable   | automated |
-| tidymodels:full | blogdown           | Add tidymodels and tidyposterior package   | manual    |
+| image           | base image              | descriptions                               | build     |
+| --------------- | ----------------------- | ------------------------------------------ | --------- |
+| jverse          | rocker/verse:3.6.1      | Japanized base image                       | automated |
+| mlwr            | jverse                  | Add R packages for Machine Learnign with R | automated |
+| tidymodels      | mlwr                    | Add tidymodels related packages            | automated |
+| blogdown        | tidymodels              | Add blogdown package and Hugo executable   | automated |
+| tidymodels:full | blogdown                | Add tidymodels and tidyposterior package   | manual    |
+| keras           | rocker/tensorflow:3.6.1 | blogdown + keras                           | automated |
 
 　
 
@@ -77,7 +78,7 @@ Noto）の追加
 Dockerの導入に関しては省略しますが、使い方の基本は`rocker/*`と同じく **必ずパスワードを指定** してください。
 
 ``` bash
-sudo docker -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudio \
+sudo docker run -p 8787:8787 -v リンクさせたいローカルパス:/home/rstudio \
   -e PASSWORD=パスワード --name コンテナ名 kmetrics/イメージ名:タグ
 ```
 
