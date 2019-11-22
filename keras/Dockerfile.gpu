@@ -1,5 +1,5 @@
 # Base container
-FROM rocker/tensorflow-gpu:3.6.1
+FROM rocker/tensorflow-gpu:3.6.0
 
 
 #### Japanized ################################################################
