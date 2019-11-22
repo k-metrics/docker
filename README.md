@@ -36,8 +36,7 @@ R.
 [rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに以下をインストールしています。
 
 1.  日本語ロケールの追加
-2.  日本語フォント（IPA and
-Noto）の追加
+2.  日本語フォント（IPA and Noto）の追加
 3.  Rパッケージに必要なOSライブラリ群の追加
 4.  Java環境の追加と設定
 
@@ -55,8 +54,7 @@ Noto）の追加
 
   - `tidymodels` imports `tidyposterior`  
   - `tidyposterior` imports `rstanarm`  
-  - `rstanarm` imports
-`rstan`
+  - `rstanarm` imports `rstan`
 
 `tidymodels`パッケージを完全な形でインストールしたい場合にはローカルビルドしてください。
 
