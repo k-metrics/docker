@@ -55,12 +55,12 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
   car coefplot FNN iBreakDown kknn klaR MLmetrics olsrr ranger
 
 # tidymodels
-RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-  broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
-  purrr recipes rlang rsample rstudioapi tibble tidypredict yardstick
+# RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+#  broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
+#  purrr recipes rlang rsample rstudioapi tibble tidypredict yardstick
 
-# RUN install2.r --skipinstalled --repos https://cloud.r-project.org \
-#  tidymodels
+RUN install2.r --skipinstalled --repos https://cloud.r-project.org \
+  tidymodels
 
 #### Other packages ###########################################################
 # Other Packages
@@ -92,5 +92,5 @@ RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
 
 # C50 package has bugs to plot tree, so to install development version
 # on GitHub fixes these bugs
-# RUN Rscript -e "devtools::install_github('topepo/C5.0')"
-RUN installGithub.r topepo/C5.0
+RUN Rscript -e "devtools::install_github('topepo/C5.0')"
+# RUN installGithub.r topepo/C5.0
