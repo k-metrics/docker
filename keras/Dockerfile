@@ -90,3 +90,7 @@ RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
 # on GitHub fixes these bugs
 RUN Rscript -e "devtools::install_github('topepo/C5.0')"
 
+
+### Install Keras #############################################################
+RUN Rscript -e "keras::install_keras(tensorflow = "1.14.0")"
+
