@@ -8,8 +8,8 @@ ENV LANG ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 RUN sed -i '$d' /etc/locale.gen \
   && echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen \
-	&& locale-gen ja_JP.UTF-8 \
-	&& /usr/sbin/update-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
+  && locale-gen ja_JP.UTF-8 \
+  && /usr/sbin/update-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
 RUN /bin/bash -c "source /etc/default/locale"
 RUN ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
@@ -42,8 +42,7 @@ RUN apt-get update -qq && \
 
 
 ### R packages for modeling ###################################################
-# Install R packages for Machine Learning with R (alphanureric order) and others
-# for Machine Learning with R
+# Install R packages for Machine Learning with R and others
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
   adabag arules C50 caret class data.table doParallel e1071 ff ffbase foreach \
   gmodels httr igraph ipred irr kernlab neuralnet psych randomForest \
@@ -54,16 +53,17 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
   car coefplot FNN iBreakDown kknn klaR MLmetrics olsrr ranger
 
-# tidymodels
-# RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-#  broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
-#  purrr recipes rlang rsample rstudioapi tibble tidypredict yardstick
+# and tidymodels
+RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+  broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
+  purrr recipes rlang rsample rstudioapi tibble tidypredict yardstick
 
-RUN install2.r --skipinstalled --repos https://cloud.r-project.org \
-  tidymodels
+### Build failed on DockerHub, reason unknown...
+# RUN install2.r --skipinstalled --repos https://cloud.r-project.org \
+#  tidymodels
 
-#### Other packages ###########################################################
-# Other Packages
+
+#### Other useful packages ####################################################
 RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
   BiocManager DiagrammeR DT ggparty ggrepel GGally learnr pdftools prettydoc \
   profvis rmdformats skimr summarytools
@@ -71,8 +71,7 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 # `modeest` package needs Bioc package
 RUN Rscript -e "BiocManager::install(c('genefilter'))" \
   && install2.r --error --skipinstalled --repos https://cloud.r-project.org \
-    modeest \
-  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+    modeest
 
 
 ### blogdown for hugo blog ####################################################
@@ -83,14 +82,11 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 RUN Rscript -e "blogdown::install_hugo()"
 
 
-### GitHub packages ###########################################################
-# install package from GitHub
-# RUN installGithub.r k-metrics/ggbiplot
+### Packages from GitHub ######################################################
 RUN Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
                                          build_opts = c('--no-resave-data', \
                                          '--no-manual'))"
-
 # C50 package has bugs to plot tree, so to install development version
 # on GitHub fixes these bugs
 RUN Rscript -e "devtools::install_github('topepo/C5.0')"
-# RUN installGithub.r topepo/C5.0
+
