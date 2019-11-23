@@ -58,7 +58,7 @@ ml-gpu     | rocker/ml-gpu:3.6.0 | ml w/ GPU support                   | automat
 * `tidyposterior` imports `rstanarm`  
 * `rstanarm` imports `rstan`
 
-`tidymodels`パッケージを完全な形でインストールしたい場合はローカルビルドしてください。気まぐれで`tidymodels:full`というローカルビルド版をアップロードする場合もあります。
+`tidymodels`パッケージを完全な形でインストールしたい場合はローカルビルドしてください。
 
 　  
 
@@ -69,12 +69,17 @@ ml-gpu     | rocker/ml-gpu:3.6.0 | ml w/ GPU support                   | automat
 　  
 
 ### keras/keras-gpu
-ディープラーニング用にKeras/Tensorflowを利用するための [rocker/tensorflow <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow){target="_blank" title="DockerHub"}, [rocker/tensorflow-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。
+ディープラーニング用にKeras/Tensorflowを利用するための [rocker/tensorflow <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow){target="_blank" title="DockerHub"}, [rocker/tensorflow-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。GPUを利用する場合には、別途、nvidiaのランタイムが必要です。
 
 　  
 
 ### ml/ml-gpu
-GPU環境（nvidia CUDA）を利用するための [rocker/ml <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml){target="_blank" title="DockerHub"}, [rocker/ml-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。別途、nvidiaのランタイムが必要です。
+ディープラーニング用にH20, gretaを追加した [rocker/ml <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml){target="_blank" title="DockerHub"}, [rocker/ml-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。GPUを利用する場合には、別途、nvidiaのランタイムが必要です。
+
+　  
+
+### :full タグ
+ローカルビルドにより`tidymodels`パッケージをフルインストールしたものです。`tidymodles`関連パッケージをインストールしているイメージに対して作成している場合があります。
 
 　  
 

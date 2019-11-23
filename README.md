@@ -83,17 +83,23 @@ buildに関しては予告なく停止する場合があります。
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow),
 [rocker/tensorflow-gpu
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu)
-をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。
+をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。GPUを利用する場合には、別途、nvidiaのランタイムが必要です。
 
 　
 
 ### ml/ml-gpu
 
-GPU環境（nvidia CUDA）を利用するための [rocker/ml
+ディープラーニング用にH20, gretaを追加した [rocker/ml
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml),
 [rocker/ml-gpu
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml-gpu)
-をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。別途、nvidiaのランタイムが必要です。
+をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。GPUを利用する場合には、別途、nvidiaのランタイムが必要です。
+
+　
+
+### :full タグ
+
+ローカルビルドにより`tidymodels`パッケージをフルインストールしたものです。`tidymodles`関連パッケージをインストールしているイメージに対して作成している場合があります。
 
 　
 
