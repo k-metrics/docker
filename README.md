@@ -1,39 +1,46 @@
 k-metrics docker container images
 ================
 
-`rocker/verse` based docker container images for Machine Learning with
-R.
+`rocker` based docker container images for Machine Learning with R.
 
 　
 
 ## About this repository
 
-本リポジトリは[rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに日本語環境で[データ分析勉強会](https://sites.google.com/site/kantometrics/2019)におけるテキストである[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードが動かせるコンテナイメージを作成し公開しています。  
-　  
+本リポジトリは [データ分析勉強会](https://sites.google.com/site/kantometrics/2019)
+でテキストとして利用している
+[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)
+のサンプルコードを動かせる日本語ロケールのコンテナイメージを作成し公開しています。すべてのコンテナイメージは
+[rocker](https://hub.docker.com/u/rocker)
+をベースとして使用しています。
+
+　
+
 なお、公開しているコンテナイメージを使用することによって生じる、いかなる直接的・間接的損害について著作者ならびに勉強会運営者はいかなる責任・サポート義務を負いません。
 
 　
 
 ## Container images
 
-公開しているコンテナイメージは以下の通りです。
+公開しているコンテナイメージは以下の通りです。なお、automated
+buildに関しては予告なく停止する場合があります。
 
 | image      | base image                  | descriptions                               | build     |
 | ---------- | --------------------------- | ------------------------------------------ | --------- |
 | jverse     | rocker/verse:3.6.1          | Japanized base image                       | automated |
 | mlwr       | jverse                      | Add R packages for Machine Learnign with R | automated |
-| tidymodels | mlwr                        | Add tidymodels package                     | automated |
+| tidymodels | mlwr                        | Add tidymodels related packages            | automated |
 | blogdown   | tidymodels                  | Add blogdown package and Hugo executable   | automated |
 | keras      | rocker/tensorflow:3.6.1     | Japanized image                            | automated |
-| keras-gpu  | rocker/tensorflow-gpu:3.6.1 | keras w/ GPU support                       | automated |
-| ml         | rocker/ml:3.6.1             | Japanized image                            | automated |
-| ml-gpu     | rocker/ml-gpu:3.6.1         | ml w/ GPU support                          | automated |
+| keras-gpu  | rocker/tensorflow-gpu:3.6.0 | keras w/ GPU support                       | automated |
+| ml         | rocker/ml:3.6.1             | tensorflow + h2o, greta. Japanized image   | automated |
+| ml-gpu     | rocker/ml-gpu:3.6.0         | ml w/ GPU support                          | automated |
 
 　
 
 ### jverse
 
-[rocker/verse](https://hub.docker.com/r/rocker/verse)をベースに以下をインストールしています。
+[rocker/verse](https://hub.docker.com/r/rocker/verse) をベースに以下を追加しています。
 
 1.  日本語ロケールの追加
 2.  日本語フォント（IPA and Noto）の追加
@@ -44,19 +51,22 @@ R.
 
 ### mlwr
 
-`kmetrics/jverse`をベースに[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)のサンプルコードを動かすために必要なRパッケージをインストールしています。
+`kmetrics/jverse`をベースに
+[『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)
+のサンプルコードを動かすために必要なRパッケージをインストールしています。
 
 　
 
 ### tidymodels
 
-`kmetrics/mlwr`をベースに`tidymodels`パッケージをインストールしたいのですが、以下の依存関係により関連パッケージとしてインストールされる`rstan`パッケージがDockerHub環境ではビルドできないため不完全な形でのインストールとなります。
+`kmetrics/mlwr`をベースに`tidymodeks`関連パッケージをインストールしています。`tidymodels`パッケージは依存関係により関連パッケージとしてインストールされる`rstan`パッケージがDockerHub環境ではビルドできないため不完全な形でのインストールになっています。。
 
   - `tidymodels` imports `tidyposterior`  
   - `tidyposterior` imports `rstanarm`  
-  - `rstanarm` imports `rstan`
+  - `rstanarm` imports
+`rstan`
 
-`tidymodels`パッケージを完全な形でインストールしたい場合にはローカルビルドしてください。
+`tidymodels`パッケージを完全な形でインストールしたい場合はローカルビルドしてください。
 
 　
 
@@ -69,7 +79,7 @@ R.
 
 ### keras/keras-gpu
 
-[rocker/tensorflow
+ディープラーニング用にKeras/Tensorflowを利用するための [rocker/tensorflow
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow),
 [rocker/tensorflow-gpu
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu)
@@ -79,11 +89,11 @@ R.
 
 ### ml/ml-gpu
 
-[rocker/ml
+GPU環境（nvidia CUDA）を利用するための [rocker/ml
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml),
 [rocker/ml-gpu
 <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/ml-gpu)
-をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。
+をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。別途、nvidiaのランタイムが必要です。
 
 　
 

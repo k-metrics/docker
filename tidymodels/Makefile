@@ -1,10 +1,8 @@
 IMAGE := kmetrics/tidymodels
-TAG := 3.6.1
+TAG := full
 
-build: 
-	docker build -f Dockerfile -t ${IMAGE}:${TAG} . > tidymodels${TAG}.log
+build:
+  docker build -f Dockerfile.full -t ${IMAGE}:${TAG} .
 
 push: 
-	docker push ${IMAGE}:${TAG}
-	docker tag ${IMAGE}:${TAG} ${IMAGE}:latest
-	docker push ${IMAGE}:latest
+  docker push ${IMAGE}:${TAG}
