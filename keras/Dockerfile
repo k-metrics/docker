@@ -92,5 +92,6 @@ RUN Rscript -e "devtools::install_github('topepo/C5.0')"
 
 
 ### Install Keras #############################################################
-RUN Rscript -e "keras::install_keras(tensorflow = "1.14.0")"
+# command returned a non-zero code: 1１
+# RUN Rscript -e "keras::install_keras(tensorflow = "1.14.0")"
 
