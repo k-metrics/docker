@@ -11,8 +11,7 @@ k-metrics docker container images
 でテキストとして利用している
 [『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)
 のサンプルコードを動かせる日本語ロケールのコンテナイメージを作成し公開しています。すべてのコンテナイメージは
-[rocker](https://hub.docker.com/u/rocker)
-をベースとして使用しています。
+[rocker](https://hub.docker.com/u/rocker) をベースとして使用しています。
 
 　
 
@@ -22,8 +21,7 @@ k-metrics docker container images
 
 ## Container images
 
-公開しているコンテナイメージは以下の通りです。なお、automated
-buildに関しては予告なく停止する場合があります。
+公開しているコンテナイメージは以下の通りです。なお、automated buildに関しては予告なく停止する場合があります。
 
 | image      | base image                  | descriptions                               | build     |
 | ---------- | --------------------------- | ------------------------------------------ | --------- |
@@ -33,8 +31,25 @@ buildに関しては予告なく停止する場合があります。
 | blogdown   | tidymodels                  | Add blogdown package and Hugo executable   | automated |
 | keras      | rocker/tensorflow:3.6.1     | Japanized image                            | automated |
 | keras-gpu  | rocker/tensorflow-gpu:3.6.0 | keras w/ GPU support                       | automated |
-| ml         | rocker/ml:3.6.1             | tensorflow + h2o, greta. Japanized image   | automated |
-| ml-gpu     | rocker/ml-gpu:3.6.0         | ml w/ GPU support                          | automated |
+
+　
+
+### build
+
+`tidymodles`パッケージがDockerHub環境では完全にインストールできないため、ビルドは以下のように行っています。
+
+| base image/tag             | build     | build image/tag            |
+| -------------------------- | --------- | -------------------------- |
+| rocker/verse:3.6.1         | automated | kmetrics/jverse:latest     |
+| kmetrics/jverse:latest     | automated | kmetrics/mlwr:latest       |
+| kmetrics/mlwr:latest       | automated | kmetrics/tidymodels:3.6.1  |
+| kmetrics/tidymodels:3.6.1  | local     | kmetrics/tidymodels:latest |
+| kmetrics/tidymodels:3.6.1  | automated | kmetrics/blogdown:3.6.1    |
+| kmetrics/tidymodels:latest | automated | kmetrics/blogdown:latest   |
+| rocker/keras:3.6.1         | automated | kmetrics/keras:3.6.1       |
+| kmetrics/keras:3.6.1       | local     | kmetrics/keras:latest      |
+| rocker/keras-gpu:3.6.0     | automated | kmetrics/keras-gpu:3.6.0   |
+| kmetrics/keras-gpu:3.6.0   | local     | kmetrics/keras-gpu:latest  |
 
 　
 
@@ -63,8 +78,7 @@ buildに関しては予告なく停止する場合があります。
 
   - `tidymodels` imports `tidyposterior`  
   - `tidyposterior` imports `rstanarm`  
-  - `rstanarm` imports
-`rstan`
+  - `rstanarm` imports `rstan`
 
 `tidymodels`パッケージを完全な形でインストールしたい場合はローカルビルドしてください。
 
@@ -97,9 +111,9 @@ buildに関しては予告なく停止する場合があります。
 
 　
 
-### :full タグ
+### :latestタグ
 
-ローカルビルドにより`tidymodels`パッケージをフルインストールしたものです。`tidymodles`関連パッケージをインストールしているイメージに対して作成している場合があります。
+`tidymodels`関連パッケージをインストールしているイメージではローカルビルドにより`tidymodels`パッケージをフルインストールしたイメージに対して`latest`タグを付与しています。
 
 　
 

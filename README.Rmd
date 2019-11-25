@@ -31,8 +31,24 @@ tidymodels | mlwr         | Add tidymodels related packages            | automat
 blogdown   | tidymodels   | Add blogdown package and Hugo executable   | automated
 keras      | rocker/tensorflow:3.6.1 | Japanized image                 | automated
 keras-gpu  | rocker/tensorflow-gpu:3.6.0 | keras w/ GPU support        | automated
-ml         | rocker/ml:3.6.1 | tensorflow + h2o, greta. Japanized image | automated
-ml-gpu     | rocker/ml-gpu:3.6.0 | ml w/ GPU support                   | automated
+
+　  
+
+### build relations
+`tidymodles`パッケージがDockerHub環境では完全にインストールできないため、ビルドは以下のように行っています。
+
+base image/tag             | build     | build image/tag            | Dockerfile
+---------------------------|-----------|----------------------------|------------
+rocker/verse:3.6.1         | automated | kmetrics/jverse:latest     | Dockerfile
+kmetrics/jverse:latest     | automated | kmetrics/mlwr:latest       | Dockerfile
+kmetrics/mlwr:latest       | automated | kmetrics/tidymodels:3.6.1  | Dockerfile
+kmetrics/tidymodels:3.6.1  | local     | kmetrics/tidymodels:latest | Dockerfile.full
+kmetrics/tidymodels:3.6.1  | automated | kmetrics/blogdown:3.6.1    | Dockerfile
+kmetrics/tidymodels:latest | automated | kmetrics/blogdown:latest   | Dockerfile.full
+rocker/keras:3.6.1         | automated | kmetrics/keras:3.6.1       | Dockerfile
+kmetrics/keras:3.6.1       | local     | kmetrics/keras:latest      | Dockerfile.full
+rocker/keras-gpu:3.6.0     | automated | kmetrics/keras-gpu:3.6.0   | Dockerfile
+kmetrics/keras-gpu:3.6.0   | local     | kmetrics/keras-gpu:latest  | Dockerfile.full
 
 　  
 
@@ -78,8 +94,8 @@ ml-gpu     | rocker/ml-gpu:3.6.0 | ml w/ GPU support                   | automat
 
 　  
 
-### :full タグ
-ローカルビルドにより`tidymodels`パッケージをフルインストールしたものです。`tidymodles`関連パッケージをインストールしているイメージに対して作成している場合があります。
+### :latestタグ
+`tidymodels`関連パッケージをインストールしているイメージではローカルビルドにより`tidymodels`パッケージをフルインストールしたイメージに対して`latest`タグを付与しています。
 
 　  
 

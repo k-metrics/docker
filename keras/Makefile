@@ -1,8 +1,8 @@
 IMAGE := kmetrics/keras
-TAG := full
+TAG := latest
 
 build:
-  docker build -f Dockerfile.full -t ${IMAGE}:${TAG} .
+  docker build -t ${IMAGE}:${TAG} -f Dockerfile.full .
 
-push: 
+push:
   docker push ${IMAGE}:${TAG}
