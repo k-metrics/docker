@@ -1,8 +1,12 @@
 IMAGE := kmetrics/tidymodels
-TAG := full
+TAG := latest
+DFILE := Dockerfile.full
+
+pull:
+	docker pull ${IMAGE}:3.6.1
 
 build:
-  docker build -f Dockerfile.full -t ${IMAGE}:${TAG} .
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
 
 push: 
-  docker push ${IMAGE}:${TAG}
+	docker push ${IMAGE}:${TAG}
