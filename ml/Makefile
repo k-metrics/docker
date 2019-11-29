@@ -1,9 +1,9 @@
-IMAGE := kmetrics/keras
+IMAGE := kmetrics/ml
 TAG := latest
-DFILE := Dockerfile.full
+DFILE := Dockerfile
 
 pull:
-	docker pull ${IMAGE}:3.6.1
+	docker pull ${IMAGE}:3.6.0
 
 build:
 	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
