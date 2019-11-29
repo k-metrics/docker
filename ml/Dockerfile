@@ -1,5 +1,5 @@
 # Base container
-FROM rocker/ml:3.6.1
+FROM rocker/ml:3.6.0
 
 
 #### Japanized ################################################################

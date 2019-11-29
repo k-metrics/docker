@@ -1,5 +1,5 @@
 # Base container
-FROM rocker/ml-gpu:3.6.1
+FROM rocker/ml-gpu:3.6.0
 
 
 #### Japanized ################################################################
