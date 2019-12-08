@@ -1,14 +1,17 @@
 IMAGE := kmetrics/keras
 TAG := latest
-DFILE := Dockerfile.full
-LDIR := /C/
+DFILE := Dockerfile
+LDIR := 
 PASS := docker
 
 pull:
 	docker pull ${IMAGE}:3.6.1
 
 build:
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
+	docker build -t ${IMAGE}:3.6.1 -f ${DFILE} .
+
+build_local:
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE}.full .
 
 push:
 	docker push ${IMAGE}:${TAG}
