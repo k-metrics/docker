@@ -1,15 +1,12 @@
-IMAGE := kmetrics/blogdown
+IMAGE := kmetrics/mlwr
 TAG := latest
 LDIR := 
-NAME := blogdown
+NAME := mlwr
 DFILE := Dockerfile
 PASS := 
 
 build:
-	docker build -t ${IMAGE}:3.6.1 -f ${DFILE} .
-
-build_local:
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE}.full .
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
 
 push: 
 	docker push ${IMAGE}:${TAG}

@@ -1,0 +1,109 @@
+---
+title: "How to setup"
+output: github_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Jupyter Notebook Data Science Stack <i class="fa fa-external-link"></i>](https://hub.docker.com/r/jupyter/datascience-notebook){target="_blank" title="DockerHub"} を起動するためにはひと手間必要です。
+
+1. ダウンロード
+1. パスワード用ハッシュ値の取得
+1. 起動
+
+なお、Docker自体の環境構築については省略します。
+
+　  
+
+# ダウンロード
+ターミナルから`docker pull`コマンドを利用して目的のコンテナイメージをダウンロードします。展開前で2GB弱ありますので通信環境にはご注意ください。
+
+```{bash, eval=FALSE}
+docker pull jupyter/datascience-notebook
+```
+
+　  
+
+# パスワード用ハッシュ値の取得
+コンテナイメージを起動する前にパスワード用のハッシュ値を取得しておきます。ハッシュ値はコンテナイメージ起動時に必要となりますので、必ずメモしておいてください。  
+まず、ターミナルから`docker`コマンドを利用してコンテナイメージ内の`bash`シェルを起動します。
+```{bash, eval=FALSE}
+docker run -it --rm jupyter/datascience-notebook /bin/bash
+```
+
+`bash`シェルが起動するとコマンドプロンプトが以下のように表示されます。`jovyan@`以降の英数時は環境により異なります。
+```{bash, eval=FALSE}
+jovyan@4b2955a4b91f:~$
+```
+
+次に`python`を利用してパスワード用ハッシュ値を取得します。
+```{bash, eval=FALSE}
+jovyan@4b2955a4b91f:~$ python -c 'from notebook.auth import passwd;print(passwd())'
+```
+
+上記のコマンドを実行するとパスワードを訪ねられますので、jupyter notebookにログインするためのパスワードを入力してください。
+```{bash, eval=FALSE}
+Enter password:
+Verify password:
+```
+
+パスワードを二回入力するとSHA1のハッシュ値が表示されますので、必ずメモしてください。
+```{bash, eval=FALSE}
+sha1:（ハッシュ値）
+```
+
+ハッシュ値をメモしたら`exit`コマンドで`bash`シェルから抜け出します。
+```{bash, eval=FALSE}
+jovyan@4b2955a4b91f:~$ exit
+```
+
+　  
+
+# 起動
+パスワード用のハッシュ値が入手できましたので、`docker run`コマンドを利用してコンテナイメージを起動します。作成したファイルなどをローカルに保存できるように`-v`オプションで任意のローカルフォルダをコンテナイメージ側にマウントしておきます。
+
+```{bash, eval=FALSE}
+docker run -d -p 8888:8888 --name {NAME} -v {LDIR}:/home/jovyan/work jupyter/datascience-notebook start-notebook.sh --NotebookApp.password={SHA1}
+```
+
+option | description
+-------|-----------------------------------------------------------------------
+--name {NAME} | 任意のコンテナ名を指定します
+-v {LDIR}     | マウントするローカルフォルダのパス（フルパス推奨）を指定します
+--NotebookApp.password='sha1:{SHA1}' | 事前に取得したハッシュ値を指定します
+
+コンテナが起動したらブラウザから`localhost:8888`にアクセスするとログイン画面が表示されますので、パスワード用ハッシュ値を取得した時に使ったパスワードでログインしてください。
+
+　  
+
+# Makefile
+以下のような`Makefile`を作成して`make`コマンドで実行することでコンテナの起動や停止が簡単になります。
+```{}
+IMAGE := jupyter/datascience-notebook
+TAG := latest
+LDIR := （任意のローカルパス）
+NAME := （任意のコンテナ名）
+SHA1 := 'sha1:（取得したハッシュ値）'
+
+pull:
+	docker pull ${IMAGE}:${TAG}
+
+run:
+	docker run -d -p 8888:8888 --name ${NAME} -v ${LDIR}:/home/jovyan ${IMAGE}:${TAG} start-notebook.sh --NotebookApp.password=${SHA1}
+
+stop:
+	docker stop ${NAME}
+```
+
+
+　  
+
+# 参考情報
+* [Dockerで基本的なData Science環境(Jupyter, Python, R, Julia, 定番ライブラリ)を構築する。 <i class="fa fa-external-link"></i>](https://qiita.com/y4m3/items/c2703d4e131e05084b7b){target="_blank" title="Qiita"} 
+
+---
+
+**enjyoy!**
