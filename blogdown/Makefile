@@ -5,20 +5,41 @@ NAME := blogdown
 DFILE := Dockerfile
 PASS := 
 
+BIMAGE := kmetrics/tidymodels
+IMAGE := kmetrics/blogdown
+BTAG := 3.6.1
+TAG := latest
+DFILE := Dockerfile
+PASS := # set login password
+NAME := tidymodels
+LDIR := # set your mount point here, full path
+
+################################################################
+# Same as automated building on DockerHub
+# pull_base:
+# 	docker pull ${BIMAGE}:${BTAG}
+
+build_base:
+	docker build -t ${IMAGE}:${BTAG} -f ${DFILE} .
+
+push_base:
+	docker push ${IMAGE}:${BTAG}
+
+################################################################
+# for local building
 build:
-	docker build -t ${IMAGE}:3.6.1 -f ${DFILE} .
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ./local/
 
-build_local:
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE}.full .
-
-push: 
+push:
 	docker push ${IMAGE}:${TAG}
 
+################################################################
+# Container management
 pull:
 	docker pull ${IMAGE}:${TAG}
 
 run:
-	docker run -d -e PASSWORD=${PASS} -p 8787:8787 -v ${LDIR}:/home/rstudio --name ${NAME} ${IMAGE}:${TAG}
+	docker run -d -e PASSWORD=${PASS} --name=${NAME} -p 8787:8787 -v ${LDIR}:/home/rstudio/ ${IMAGE}:${TAG}
 
 stop:
 	docker stop ${NAME}
