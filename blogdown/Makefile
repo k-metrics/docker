@@ -1,10 +1,3 @@
-IMAGE := kmetrics/blogdown
-TAG := latest
-LDIR := 
-NAME := blogdown
-DFILE := Dockerfile
-PASS := 
-
 BIMAGE := kmetrics/tidymodels
 IMAGE := kmetrics/blogdown
 BTAG := 3.6.1
