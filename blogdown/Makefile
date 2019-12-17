@@ -4,7 +4,7 @@ BTAG := 3.6.1
 TAG := latest
 DFILE := Dockerfile
 PASS := # set login password
-NAME := tidymodels
+NAME := blogdown
 LDIR := # set your mount point here, full path
 
 ################################################################
