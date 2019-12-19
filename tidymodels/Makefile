@@ -21,7 +21,7 @@ push_base:
 ################################################################
 # for local building
 build:
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ./local/
+	docker build -t ${IMAGE}:${TAG} -f ./local/${DFILE} .
 
 push:
 	docker push ${IMAGE}:${TAG}
