@@ -70,10 +70,3 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
 # on GitHub fixes these bugs
  && Rscript -e "devtools::install_github('topepo/C5.0')" \
  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
-
-# Install Python modules
-USER rstudio
-RUN pip3 install \
-      furl lxml matplotlib numpy openpyxl pandas pytz \
-      pycodestyle
-USER root
