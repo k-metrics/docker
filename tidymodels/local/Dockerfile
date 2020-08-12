@@ -1,5 +1,5 @@
 FROM kmetrics/mlwr:latest
 
 # ローカルビルド専用のDockerfileです
-RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+RUN install2.r --error --skipinstalled \
     tidymodels 

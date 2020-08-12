@@ -1,7 +1,7 @@
 FROM kmetrics/jverse:latest
 
 # Install R packages for Machine Learning with R
-RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+RUN install2.r --error --skipinstalled \
     adabag arules C50 caret class data.table doParallel e1071 ff \
     ffbase foreach gmodels httr igraph ipred irr kernlab neuralnet \
     psych randomForest RCurl rio rjson ROCR RODBC rpart rpart.plot \
@@ -10,11 +10,11 @@ RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # Other Packages
-RUN install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+RUN install2.r --error --skipinstalled \
     BiocManager DiagrammeR DT ggparty ggrepel GGally learnr multcomp \
     pdftools prettydoc profvis rmdformats skimr summarytools \
  && Rscript -e "BiocManager::install(c('genefilter'))" \
- && install2.r --error --skipinstalled --repos https://cloud.r-project.org \
+ && install2.r --error --skipinstalled \
     modeest \
  && Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
                                          build_opts = c('--no-resave-data', \

@@ -1,4 +1,4 @@
-FROM kmetrics/jverse:3.6.1
+FROM kmetrics/jverse:3.6.3
 
 # Install R packages for Machine Learning with R
 RUN install2.r --error --skipinstalled \

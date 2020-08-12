@@ -1,5 +1,5 @@
 # Base container
-FROM rocker/verse:latest
+FROM rocker/verse:3.6.3
 
 # Install japanese env and setup local
 ENV LANG ja_JP.UTF-8
