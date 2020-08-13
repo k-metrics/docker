@@ -1,7 +1,5 @@
 FROM kmetrics/mlwr:latest
 
 RUN install2.r --error --skipinstalled \
-    broom cli crayon dials dplyr ggplot2 infer magrittr parsnip pillar \
-    purrr recipes rlang rsample rstudioapi tibble tidypredict tidytext \
-    tune workflows yardstick \
+    tidymodels \
  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
