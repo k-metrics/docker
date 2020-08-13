@@ -24,6 +24,21 @@ push_all:
 
 
 ################################################################
+# Following commands can use TAG argument
+# $ make command TAG=tag
+build:
+ifeq (${TAG}, latest)
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
+else
+	docker build -t ${IMAGE}:${TAG} -f ./${TAG}/${DFILE} .
+endif
+
+# $ make push TAG=tag
+push:
+	docker push ${IMAGE}:${TAG}
+
+
+################################################################
 # Container management
 pull:
 	docker pull ${IMAGE}:${TAG}

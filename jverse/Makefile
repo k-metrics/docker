@@ -5,9 +5,31 @@ NAME := jverse
 DFILE := Dockerfile
 PASS := 
 
-build:
+################################################################
+# Build all images manually
+build_all:
+	docker build -t ${IMAGE}:3.6.1 -f ./3.6.1/${DFILE} ./3.6.1
+	docker build -t ${IMAGE}:3.6.2 -f ./3.6.2/${DFILE} ./3.6.2
+	docker build -t ${IMAGE}:3.6.3 -f ./3.6.3/${DFILE} ./3.6.3
 	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
 
+push_all:
+	docker push ${IMAGE}:3.6.1
+	docker push ${IMAGE}:3.6.2
+	docker push ${IMAGE}:3.6.3
+	docker push ${IMAGE}:${TAG}
+
+
+################################################################
+# $ make command TAG=tag
+build:
+ifeq (${TAG}, latest)
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
+else
+	docker build -t ${IMAGE}:${TAG} -f ./${TAG}/${DFILE} .
+endif
+
+# $ make push TAG=tag
 push: 
 	docker push ${IMAGE}:${TAG}
 
