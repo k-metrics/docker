@@ -14,12 +14,18 @@ build_all:
 	docker build -t ${IMAGE}:3.6.1 -f ./3.6.1/${DFILE} ./3.6.1
 	docker build -t ${IMAGE}:3.6.2 -f ./3.6.2/${DFILE} ./3.6.2
 	docker build -t ${IMAGE}:3.6.3 -f ./3.6.3/${DFILE} ./3.6.3
+	docker build -t ${IMAGE}:4.0.0 -f ./4.0.0/${DFILE} ./4.0.0
+	docker build -t ${IMAGE}:4.0.1 -f ./4.0.1/${DFILE} ./4.0.1
+	docker build -t ${IMAGE}:4.0.2 -f ./4.0.2/${DFILE} ./4.0.2
 	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
 
 push_all:
 	docker push ${IMAGE}:3.6.1
 	docker push ${IMAGE}:3.6.2
 	docker push ${IMAGE}:3.6.3
+	docker push ${IMAGE}:4.0.0
+	docker push ${IMAGE}:4.0.1
+	docker push ${IMAGE}:4.0.2
 	docker push ${IMAGE}:${TAG}
 
 
