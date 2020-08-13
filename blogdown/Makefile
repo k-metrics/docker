@@ -1,6 +1,4 @@
-BIMAGE := kmetrics/tidymodels
 IMAGE := kmetrics/blogdown
-BTAG := 3.6.1
 TAG := latest
 DFILE := Dockerfile
 PASS := # set login password
@@ -12,19 +10,18 @@ LDIR := # set your mount point here, full path
 # pull_base:
 # 	docker pull ${BIMAGE}:${BTAG}
 
-build_base:
-	docker build -t ${IMAGE}:${BTAG} -f ${DFILE} .
+build_all:
+	docker build -t ${IMAGE}:3.6.1 -f ./3.6.1/${DFILE} ./3.6.1
+	docker build -t ${IMAGE}:3.6.2 -f ./3.6.2/${DFILE} ./3.6.2
+	docker build -t ${IMAGE}:3.6.3 -f ./3.6.3/${DFILE} ./3.6.3
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
 
-push_base:
-	docker push ${IMAGE}:${BTAG}
-
-################################################################
-# for local building
-build:
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ./local/
-
-push:
+push_all:
+	docker push ${IMAGE}:3.6.1
+	docker push ${IMAGE}:3.6.2
+	docker push ${IMAGE}:3.6.3
 	docker push ${IMAGE}:${TAG}
+
 
 ################################################################
 # Container management
