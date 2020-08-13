@@ -1,4 +1,4 @@
-FROM kmetrics/tidymodels:3.6.1
+FROM kmetrics/tidymodels:3.6.3
 
 RUN install2.r --error --skipinstalled \
     blogdown \
