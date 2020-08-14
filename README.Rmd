@@ -19,47 +19,16 @@ knitr::opts_chunk$set(echo = TRUE)
 　  
 
 # Container images
-　一部を除きDockerHubのビルド機能で自動ビルドしています。なお、自動ビルドは予告なく停止する場合があります。
+　以下のコンテナイメージを公開しています。
 
-image      | base image   | descriptions
------------|--------------|------------------------------------------
-jverse     | rocker/verse | Localizing into Japanese (Add Japanese fonts and locale)
-mlwr       | jverse       | Add R packages for Machine Learning with R
-tidymodels | mlwr         | Add tidymodels package (Manually build)
-blogdown   | tidymodels   | Add blogdown package and Hugo executable
-keras      | rocker/tensorflow | Localizing into Japanese image w/ mlwr, tidymodels, blogdown
+Image      | Base image   | R3.6.x | R4.0.x | Descriptions
+-----------|--------------|:------:|:------:|--------------------------
+jverse     | rocker/verse | Yes    | Yes    | Localizing into Japanese (Add Japanese fonts and locale)
+mlwr       | jverse       | Yes    | Yes    | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112)
+tidymodels | mlwr         | Yes^\*^ | Yes    | Add `tidymodels` package
+blogdown   | tidymodels   | Yes    | Yes    | Add `blogdown` package and Hugo executable
 
-　  
-
-# About container images
-
-## jverse
-　[rocker/verse](https://hub.docker.com/r/rocker/verse) をベースに以下を追加しています。
-
-1. 日本語ロケールの追加
-1. 日本語フォント（IPA and Noto）の追加
-1. Rパッケージに必要なOSライブラリ群の追加
-1. Java環境の追加と設定
-
-　  
-
-## mlwr
-　`kmetrics/jverse`をベースに [『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112) のサンプルコードを動かすために必要なRパッケージをインストールしています。
-
-　  
-
-## tidymodels
-　`kmetrics/mlwr`をベースに`tidymodels`パッケージをインストールしています。DockerHub環境ではメモリ不足で`rstan`パッケージがコンパイルできないためローカルビルドしています。
-
-　  
-
-## blogdown
-　`kmetrics/tidymodels`をベースに`blogdown`パッケージとHugoの実行環境をインストールしています。Hugoテーマはインストールしていませんので別途`blogdown::install_theme`関数を利用してインストールしてください。なお、`C50`パッケージにプロット関連のバグがあるため暫定的にGitHubの開発版を本イメージにてインストールしています。  
-
-　  
-
-## keras
-　ディープラーニング用にKeras/Tensorflowを利用するための [rocker/tensorflow <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow){target="_blank" title="DockerHub"}, [rocker/tensorflow-gpu <i class="fa fa-external-link"></i>](https://hub.docker.com/r/rocker/tensorflow-gpu){target="_blank" title="DockerHub"} をベースに`kmetrics/blogdown`と同じパッケージ群をインストールしています。最初に`keras::install_keras`関数を実行してKeras関連パッケージをインストールする必要があります。なお、GPU版を利用する場合には、別途、nvidiaのランタイムが必要です。
+^\*^ Build manually
 
 　  
 
