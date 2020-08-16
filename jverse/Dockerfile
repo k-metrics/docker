@@ -2,8 +2,9 @@
 FROM rocker/verse:latest
 
 # Install japanese env and setup local
-ENV LANG ja_JP.UTF-8
-ENV LC_ALL ja_JP.UTF-8
+ENV LANG=ja_JP.UTF-8
+ENV LC_ALL=ja_JP.UTF-8
+ENV TZ=JST
 RUN sed -i '$d' /etc/locale.gen \
   && echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen \
   && locale-gen ja_JP.UTF-8 \
@@ -14,10 +15,8 @@ RUN sed -i '$d' /etc/locale.gen \
 # Install japanese fonts
 RUN apt-get update -qq \
   && apt-get install -y fonts-ipaexfont \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install OS libraries (for R packages)
-#     https://demo.rstudiopm.com/client/#/
 RUN apt-get update -qq \
  && apt-get install -y \
     imagemagick libmagick++-dev libjpeg-dev libpng-dev \
@@ -33,13 +32,17 @@ RUN apt-get update -qq \
     pandoc-citeproc pandoc \
     tcl8.6-dev tcl-dev tk8.6-dev tk-dev tcllib tklib \
     poppler-utils \
- && apt-get clean && rm -rf /var/lib/apt/lists/*
+  && apt-get remove -y systemd \
+  && apt-get -y autoremove \
+  && apt-get -y clean
 
-# Get and Setup Java for R
-RUN apt-get update -qq \
- && apt-get -y --no-install-recommends install \
-      cmake \
-      default-jdk \
-      default-jre \
- && apt-get clean && rm -rf /var/lib/apt/lists/* \
- &&	R CMD javareconf
+# Java installed in rocker/verse
+# RUN apt-get update -qq \
+# && apt-get -y --no-install-recommends install \
+#      cmake \
+#      default-jdk \
+#      default-jre \
+# && apt-get clean && rm -rf /var/lib/apt/lists/* \
+
+Rscript -e "blogdown::install_hugo()" \
+R CMD javareconf

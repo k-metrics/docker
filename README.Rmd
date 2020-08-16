@@ -25,10 +25,13 @@ Image      | Base image   | R3.6.x | R4.0.x | Descriptions
 -----------|--------------|:------:|:------:|--------------------------
 jverse     | rocker/verse | Yes    | Yes    | Localizing into Japanese (Add Japanese fonts and locale)
 mlwr       | jverse       | Yes    | Yes    | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112)
-tidymodels | mlwr         | Yes^\*^ | Yes    | Add `tidymodels` package
-blogdown   | tidymodels   | Yes    | Yes    | Add `blogdown` package and Hugo executable
+tidymodels | mlwr         | Yes^1^ | Yes    | Add `tidymodels` package
+blogdown   | tidymodels   | Yes    | No^2^    | Add `blogdown` package and Hugo executable
+keras      | rocker/tensorflow | No^3^ | No^3^ | Discontinued
 
-^\*^ Build manually
+^1^ Build manually
+^2^ rocker/verse:4.0.x includes `blogdown` package
+^3^ rocker/tensorflow no longer update
 
 　  
 
