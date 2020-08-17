@@ -8,13 +8,13 @@ PASS :=
 ################################################################
 # Build all images manually
 build_all:
-	docker build -t ${IMAGE}:3.6.1 -f ./3.6.1/${DFILE} ./3.6.1
-	docker build -t ${IMAGE}:3.6.2 -f ./3.6.2/${DFILE} ./3.6.2
-	docker build -t ${IMAGE}:3.6.3 -f ./3.6.3/${DFILE} ./3.6.3
-	docker build -t ${IMAGE}:4.0.0 -f ./4.0.0/${DFILE} ./4.0.0
-	docker build -t ${IMAGE}:4.0.1 -f ./4.0.1/${DFILE} ./4.0.1
-	docker build -t ${IMAGE}:4.0.2 -f ./4.0.2/${DFILE} ./4.0.2
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
+	docker build -t ${IMAGE}:3.6.1 -f ./3.6.1/${DFILE} ..
+	docker build -t ${IMAGE}:3.6.2 -f ./3.6.2/${DFILE} ..
+	docker build -t ${IMAGE}:3.6.3 -f ./3.6.3/${DFILE} ..
+	docker build -t ${IMAGE}:4.0.0 -f ./4.0.0/${DFILE} ..
+	docker build -t ${IMAGE}:4.0.1 -f ./4.0.1/${DFILE} ..
+	docker build -t ${IMAGE}:4.0.2 -f ./4.0.2/${DFILE} ..
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ..
 
 push_all:
 	docker push ${IMAGE}:3.6.1
@@ -30,9 +30,9 @@ push_all:
 # $ make command TAG=tag
 build:
 ifeq (${TAG}, latest)
-	docker build -t ${IMAGE}:${TAG} -f ${DFILE} .
+	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ..
 else
-	docker build -t ${IMAGE}:${TAG} -f ./${TAG}/${DFILE} .
+	docker build -t ${IMAGE}:${TAG} -f ./${TAG}/${DFILE} ..
 endif
 
 # $ make push TAG=tag
@@ -43,7 +43,7 @@ pull:
 	docker pull ${IMAGE}:${TAG}
 
 run:
-	docker run -d -e PASSWORD=${PASS} -p 8787:8787 -v ${LDIR}:/home/rstudio --name ${NAME} ${IMAGE}:${TAG}
+	docker run -d -e PASSWORD=${PASS} -p 8787:8787 -v ${LDIR}:/home/rstudio/R/project --name ${NAME} ${IMAGE}:${TAG}
 
 stop:
 	docker stop ${NAME}

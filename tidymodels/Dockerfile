@@ -1,5 +1,5 @@
 FROM kmetrics/mlwr:latest
 
-RUN install2.r --error --skipinstalled \
-    tidymodels \
- && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+COPY scripts /kmetrics_script
+
+RUN /kmetrics_script/install_tidymodels.sh

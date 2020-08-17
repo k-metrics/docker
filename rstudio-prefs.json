@@ -1,0 +1,41 @@
+{
+    "reuse_sessions_for_project_links": true,
+    "panes": {
+        "quadrants": [
+            "Source",
+            "Console",
+            "TabSet1",
+            "TabSet2"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Connections",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Files",
+            "Plots",
+            "Packages",
+            "Help",
+            "Viewer"
+        ],
+        "console_left_on_top": false,
+        "console_right_on_top": true
+    },
+    "initial_working_directory": "~/project",
+    "soft_wrap_r_files": true,
+    "highlight_selected_line": true,
+    "show_indent_guides": true,
+    "syntax_color_console": true,
+    "default_encoding": "UTF-8",
+    "rmd_viewer_type": "pane",
+    "default_sweave_engine": "knitr",
+    "default_latex_program": "XeLaTeX",
+    "posix_terminal_shell": "bash",
+    "show_hidden_files": false,
+    "editor_theme": "Tomorrow Night Blue"
+}
