@@ -11,7 +11,7 @@ RUN install2.r --error --skipinstalled \
 
 # Other Packages
 RUN install2.r --error --skipinstalled \
-    BiocManager DiagrammeR DT ggparty ggrepel GGally learnr multcomp \
+    BiocManager DiagrammeR DT ggparty ggrepel GGally here learnr multcomp \
     pdftools prettydoc profvis rmdformats skimr summarytools \
  && Rscript -e "BiocManager::install(c('genefilter'))" \
  && install2.r --error --skipinstalled \
