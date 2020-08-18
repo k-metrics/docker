@@ -1,11 +1,10 @@
 #!/bin/bash
-set -e
+set -Ceu
 
 install2.r --error --skipinstalled -r $CRAN \
     tidymodels
 
 # Cleanup
-cd /
 rm -rf /tmp/*
 apt-get autoremove -y
 apt-get clean -y

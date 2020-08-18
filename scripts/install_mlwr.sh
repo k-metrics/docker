@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -Ceu
 
 # Install Machine Learning with R related packages
 install2.r --error --skipinstalled -r $CRAN \
@@ -24,7 +24,6 @@ Rscript -e "devtools::install_github('k-metrics/ggbiplot', \
                                      '--no-manual'))"
 
 # Cleanup
-cd /
 rm -rf /tmp/*
 apt-get autoremove -y
 apt-get clean -y

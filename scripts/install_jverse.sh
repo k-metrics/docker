@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -Ceu
 
 # Install japanese IPA fonts
 apt-get update \
@@ -22,7 +22,6 @@ chown rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
 chmod 644 /home/rstudio/.config/rstudio/rstudio-prefs.json
 
 # Cleanup
-cd /
 rm -rf /tmp/*
 apt-get autoremove -y
 apt-get clean -y

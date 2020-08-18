@@ -1,4 +1,3 @@
-# Base container
 FROM rocker/verse:latest
 
 # Install japanese env and setup local
@@ -14,7 +13,7 @@ RUN sed -i '$d' /etc/locale.gen \
   && /bin/bash -c "source /etc/default/locale" \
   && ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-
+# Copy files
 COPY scripts /kmetrics_script
 COPY samples /home/rstudio/sample
 COPY rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
