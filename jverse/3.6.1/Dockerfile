@@ -17,7 +17,6 @@ RUN apt-get update -qq \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy files
-ENV TERM=xterm
 COPY samples /home/rstudio/sample
 
 # Install OS libraries (for R packages)
