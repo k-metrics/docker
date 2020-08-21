@@ -36,6 +36,8 @@
     "default_sweave_engine": "knitr",
     "default_latex_program": "XeLaTeX",
     "posix_terminal_shell": "bash",
+    "restore_source_documents": false,
+    "show_doc_outline_rmd": true,
     "show_hidden_files": false,
     "editor_theme": "Tomorrow Night Blue"
 }
