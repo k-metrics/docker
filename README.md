@@ -21,13 +21,13 @@ k-metrics docker container images
 
 　以下のコンテナイメージを公開しています。
 
-| Image      | Base image        |     R3.6.x      |     R4.0.x     | Descriptions                                                                                       |
-| ---------- | ----------------- | :-------------: | :------------: | -------------------------------------------------------------------------------------------------- |
-| jverse     | rocker/verse      |       Yes       |      Yes       | Localizing into Japanese (Add Japanese fonts and locale)                                           |
-| mlwr       | jverse            |       Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
-| tidymodels | mlwr              | Yes<sup>1</sup> |      Yes       | Add `tidymodels` package                                                                           |
-| blogdown   | tidymodels        |       Yes       | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
-| keras      | rocker/tensorflow | No<sup>3</sup>  | No<sup>3</sup> | Discontinued                                                                                       |
+| Image      | Base image                                                      |     R3.6.x      |     R4.0.x     | Descriptions                                                                                       |
+| ---------- | --------------------------------------------------------------- | :-------------: | :------------: | -------------------------------------------------------------------------------------------------- |
+| jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |       Yes       |      Yes       | Yes                                                                                                |
+| mlwr       | jverse                                                          |       Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
+| tidymodels | mlwr                                                            | Yes<sup>1</sup> |      Yes       | Add `tidymodels` package                                                                           |
+| blogdown   | tidymodels                                                      |       Yes       | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
+| keras      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup>  | No<sup>3</sup> | Discontinued                                                                                       |
 
 <sup>1</sup> Build manually  
 <sup>2</sup> rocker/verse:4.0.x includes `blogdown` package and Hugo
@@ -38,7 +38,10 @@ executable
 
 # Usage
 
-　Dockerの導入に関しては省略しますが、使い方は`rocker/*`と同じく **必ずパスワードを指定** してください。
+　Dockerの導入に関しては省略しますが、使い方は `rocker/*` と同じで **必ずパスワードを指定**
+してください。Dockerコンテナの起動については『[Run your image as a
+container, Docker
+Docs](https://docs.docker.com/get-started/part2/)』を参照してください。
 
 ``` bash
 sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/project \
@@ -53,14 +56,15 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 | イメージ名       | tidymodels | 実行させたいイメージ名                    |
 | タグ          | 3.6.1      | 省略時は`latest`を指定したものと解釈されます     |
 
-<sup>4</sup>
-Windowsの場合`/DriveLetter/Directory/...`としてください。`DriveLetter:`というドライブ名は使えません。
+<sup>4</sup> Windowsの場合 `/DriveLetter/Directory/...`
+としてください。`DriveLetter:` というドライブ名は使えません。
 
 　
 
 ## ホームディレクトリ
 
-　Dockerのユーザ名は`rocker/*`と同じく`rstudio`ですのでホームディレクトリは`/home/rstudio`になります。ホームディレクトリ配下には以下のサブディレクトリが配置されています。
+　ログイン名は `rocker/*` と同じく `rstudio` ですのでホームディレクトリは `/home/rstudio`
+となります。ホームディレクトリ配下には以下のサブディレクトリを配置しています。
 
 | サブディレクトリ名 | 用途など                                           |
 | --------- | ---------------------------------------------- |
@@ -74,11 +78,13 @@ Windowsの場合`/DriveLetter/Directory/...`としてください。`DriveLetter
 
 ## 設定ファイル（4.0.x and latest tag Only）
 
-　RStudioの設定はデフォルトから変更してあります。設定ファイル`rstudio-prefs.json`は、好みに応じて変更しイメージをビルドしてください。なお、設定項目の詳細については[こちら](https://docs.rstudio.com/ide/server-pro/1.3.820-1/session-user-settings.html#session-user-settings)を参照してください。
+　`4.0.x` タグならびに `latest` タグのコンテナイメージではRStudioの設定をデフォルトから変更してあります。設定ファイルは
+`rstudio-prefs.json` で、好みに応じて変更することが可能です。変更した場合は `jverse`
+から準備ビルドし直してください。なお、設定項目の詳細については[こちら](https://docs.rstudio.com/ide/server-pro/1.3.820-1/session-user-settings.html#session-user-settings)を参照してください。
 
 　
 
 # License
 
   - Dockerfiles are licensed under the GPL 2 or later.  
-  - Other documents are licensed under “CC BY-NC-SA 4.0, Sampo Suzuki”
+  - Other documents are licensed under CC BY-NC-SA 4.0, Sampo Suzuki
