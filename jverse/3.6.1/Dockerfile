@@ -16,6 +16,10 @@ RUN apt-get update -qq \
   && apt-get install -y fonts-ipaexfont \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Copy files
+ENV TERM=xterm
+COPY samples /home/rstudio/sample
+
 # Install OS libraries (for R packages)
 #     https://demo.rstudiopm.com/client/#/
 RUN apt-get update -qq \
@@ -43,8 +47,3 @@ RUN apt-get update -qq \
       default-jre \
  && apt-get clean && rm -rf /var/lib/apt/lists/* \
  &&	R CMD javareconf
-
-# Copy files
-USER rstudio
-COPY samples /home/rstudio/sample
-
