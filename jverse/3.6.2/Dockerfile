@@ -11,6 +11,9 @@ RUN sed -i '$d' /etc/locale.gen \
   && /bin/bash -c "source /etc/default/locale" \
   && ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+# Copy files
+COPY samples /home/rstudio/sample
+
 # Install japanese fonts
 RUN apt-get update -qq \
   && apt-get install -y fonts-ipaexfont \
