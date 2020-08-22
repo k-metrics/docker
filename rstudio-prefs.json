@@ -39,5 +39,6 @@
     "restore_source_documents": false,
     "show_doc_outline_rmd": true,
     "show_hidden_files": false,
-    "editor_theme": "Tomorrow Night Blue"
+    "editor_theme": "Tomorrow Night Blue",
+    "font_size_points": 11
 }

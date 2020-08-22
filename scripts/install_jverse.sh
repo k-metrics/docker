@@ -3,7 +3,8 @@ set -Ceu
 
 # Install japanese IPA fonts
 apt-get update \
-  && apt-get install -y --no-install-recommends fonts-ipaexfont
+ && apt-get install -y --no-install-recommends \
+    fonts-ipaexfont
 
 # Install OS libraries (for R packages)
 apt-get update \
@@ -18,8 +19,10 @@ apt-get update \
     zlib1g-dev 
 
 # Change owner and file mode
-chown rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
+# chown -R rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
+chown -R rstudio:rstudio /home/rstudio/.config
 chmod 644 /home/rstudio/.config/rstudio/rstudio-prefs.json
+chown -R rstudio:rstudio /home/rstudio/sample
 
 # Cleanup
 rm -rf /tmp/*
