@@ -18,6 +18,11 @@ apt-get update \
     poppler-utils \
     zlib1g-dev 
 
+# Other Packages
+install2.r --error --skipinstalled -r $CRAN \
+    DiagrammeR DT ggparty ggrepel GGally here learnr modeest multcomp \
+    pdftools prettydoc profvis reactable rmdformats skimr summarytools
+
 # Change owner and file mode
 # chown -R rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
 chown -R rstudio:rstudio /home/rstudio/.config

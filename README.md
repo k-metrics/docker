@@ -23,12 +23,13 @@ k-metrics docker container images
 
 | Image      | Base image                                                      |     R3.6.x      |     R4.0.x     | Descriptions                                                                                       |
 | ---------- | --------------------------------------------------------------- | :-------------: | :------------: | -------------------------------------------------------------------------------------------------- |
-| jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |       Yes       |      Yes       | Yes                                                                                                |
+| jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |       Yes       |      Yes       | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages<sup>0</sup>         |
 | mlwr       | jverse                                                          |       Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
 | tidymodels | mlwr                                                            | Yes<sup>1</sup> |      Yes       | Add `tidymodels` package                                                                           |
 | blogdown   | tidymodels                                                      |       Yes       | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
 | keras      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup>  | No<sup>3</sup> | Discontinued                                                                                       |
 
+<sup>0</sup> 3.6.x images NOT include useful R packages  
 <sup>1</sup> Build manually  
 <sup>2</sup> rocker/verse:4.0.x includes `blogdown` package and Hugo
 executable  

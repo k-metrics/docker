@@ -23,12 +23,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Image      | Base image   | R3.6.x | R4.0.x | Descriptions
 -----------|--------------|:------:|:------:|----------------------------------
-jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse) | Yes    | Yes    | Yes    | Localizing into Japanese (Add Japanese fonts and locale)
+jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse) | Yes    | Yes    | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages^0^
 mlwr       | jverse       | Yes    | Yes    | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112)
 tidymodels | mlwr         | Yes^1^ | Yes    | Add `tidymodels` package
 blogdown   | tidymodels   | Yes    | No^2^  | Add `blogdown` package and Hugo executable
 keras      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No^3^ | No^3^ | Discontinued
 
+^0^ 3.6.x images NOT include useful R packages  
 ^1^ Build manually  
 ^2^ rocker/verse:4.0.x includes `blogdown` package and Hugo executable  
 ^3^ rocker/tensorflow no longer update  

@@ -9,10 +9,10 @@ install2.r --error --skipinstalled -r $CRAN \
     rvest RWeka snow SnowballC tm vcd wordcloud XML xml2 \
     car coefplot FNN iBreakDown kknn klaR MLmetrics olsrr ranger
 
-# Other Packages
-install2.r --error --skipinstalled -r $CRAN \
-    DiagrammeR DT ggparty ggrepel GGally here learnr multcomp \
-    pdftools prettydoc profvis rmdformats skimr summarytools modeest
+# # Other Packages (removed, install following packages to jverse)
+# install2.r --error --skipinstalled -r $CRAN \
+#     DiagrammeR DT ggparty ggrepel GGally here learnr multcomp \
+#     pdftools prettydoc profvis rmdformats skimr summarytools modeest
 
 # Rscript -e "BiocManager::install(c('genefilter'))"
 # install2.r --error --skipinstalled -r $CRAN \
