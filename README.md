@@ -10,7 +10,7 @@ k-metrics docker container images
 　本リポジトリは [データ分析勉強会](https://sites.google.com/site/kantometrics/2019)
 でテキストとして利用している
 [『Rによる機械学習』](https://www.shoeisha.co.jp/book/detail/9784798145112)
-のサンプルコードを動かせる日本語ロケールのコンテナイメージを作成し公開しています。すべてのコンテナイメージは
+のサンプルコードが動かせる日本語ロケールのコンテナイメージを作成し公開しています。すべてのコンテナイメージは
 [rocker](https://hub.docker.com/u/rocker) をベースとして使用しています。
 
 　なお、公開しているコンテナイメージを使用することによって生じる、いかなる直接的・間接的損害について著作者ならびに勉強会運営者はいかなる責任・サポート義務を負いません。
@@ -21,18 +21,18 @@ k-metrics docker container images
 
 　以下のコンテナイメージを公開しています。
 
-| Image      | Base image                                                      |     R3.6.x      |     R4.0.x     | Descriptions                                                                                       |
-| ---------- | --------------------------------------------------------------- | :-------------: | :------------: | -------------------------------------------------------------------------------------------------- |
-| jverse     | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |       Yes       |      Yes       | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages<sup>0</sup>         |
-| mlwr       | jverse                                                          |       Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
-| tidymodels | mlwr                                                            | Yes<sup>1</sup> |      Yes       | Add `tidymodels` package                                                                           |
-| blogdown   | tidymodels                                                      |       Yes       | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
-| keras      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup>  | No<sup>3</sup> | Discontinued                                                                                       |
+| Image                                                      | Base image                                                      |     R3.6.x      |     R4.0.x     | Descriptions                                                                                       |
+| ---------------------------------------------------------- | --------------------------------------------------------------- | :-------------: | :------------: | -------------------------------------------------------------------------------------------------- |
+| [jverse](https://hub.docker.com/r/kmetrics/jverse)         | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |       Yes       |      Yes       | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages<sup>0</sup>         |
+| [mlwr](https://hub.docker.com/r/kmetrics/mlwr)             | jverse                                                          |       Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
+| [tidymodels](https://hub.docker.com/r/kmetrics/tidymodels) | mlwr                                                            | Yes<sup>1</sup> |      Yes       | Add `tidymodels` package                                                                           |
+| [blogdown](https://hub.docker.com/r/kmetrics/blogdown)     | tidymodels                                                      |       Yes       | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
+| keras                                                      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup>  | No<sup>3</sup> | Discontinued                                                                                       |
 
 <sup>0</sup> 3.6.x images NOT include useful R packages  
 <sup>1</sup> Build manually  
-<sup>2</sup> rocker/verse:4.0.x includes `blogdown` package and Hugo
-executable  
+<sup>2</sup> rocker/verse:4.0.x and latest include `blogdown` package
+and Hugo executable  
 <sup>3</sup> rocker/tensorflow no longer update
 
 　
@@ -58,34 +58,43 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 | タグ          | 3.6.1      | 省略時は`latest`を指定したものと解釈されます     |
 
 <sup>4</sup> Windowsの場合 `/DriveLetter/Directory/...`
-としてください。`DriveLetter:` というドライブ名は使えません。
+と指定してください。`DriveLetter:` というドライブ名は使えません。
 
 　
 
-## ホームディレクトリ
+## Home directory (Docker side)
 
 　ログイン名は `rocker/*` と同じく `rstudio` ですのでホームディレクトリは `/home/rstudio`
 となります。ホームディレクトリ配下には以下のサブディレクトリを配置しています。
 
-| サブディレクトリ名 | 用途など                                           |
-| --------- | ---------------------------------------------- |
-| kitematic | コンテナ管理用ディレクトリ（R3.6.x(RStudio Server 1.2) Only） |
-| project   | プロジェクト用ディレクトリ（ローカルパスのリンクポイント）                  |
-| sample    | サンプルファイル<sup>5</sup>（スクリプト、データなど）格納ディレクトリ      |
+| サブディレクトリ名 | 用途など                                      |
+| --------- | ----------------------------------------- |
+| kitematic | コンテナ管理用ディレクトリ（RStudio Server 1.2 Only）    |
+| project   | プロジェクト用ディレクトリ（ローカルパスのリンクポイント）             |
+| sample    | サンプルファイル<sup>5</sup>（スクリプト、データなど）格納ディレクトリ |
 
 <sup>5</sup> 順次提供予定
 
 　
 
-## 設定ファイル（4.0.x and latest tag Only）
+## RStudio Preference（4.0.x and latest tag Only）
 
-　`4.0.x` タグならびに `latest` タグのコンテナイメージではRStudioの設定をデフォルトから変更してあります。設定ファイルは
+　`4.0.x` タグならびに `latest` タグのコンテナイメージではRStudioの設定をデフォルトから変更しています。設定ファイルは
 `rstudio-prefs.json` で、好みに応じて変更することが可能です。変更した場合は `jverse`
-から準備ビルドし直してください。なお、設定項目の詳細については[こちら](https://docs.rstudio.com/ide/server-pro/1.3.820-1/session-user-settings.html#session-user-settings)を参照してください。
+から順次ビルドし直すかDockerfileを変更してビルドし直してください。なお、設定項目の詳細については[こちら](https://docs.rstudio.com/ide/server-pro/1.3.820-1/session-user-settings.html#session-user-settings)を参照してください。
+
+　
+
+# Reference
+
+  - [rocker](https://hub.docker.com/u/rocker)
+  - [rocker-org](https://github.com/rocker-org)
+  - [tokyor/rstudio](https://hub.docker.com/r/tokyor/rstudio)
+  - [RStudio Package Manager](https://packagemanager.rstudio.com/)
 
 　
 
 # License
 
   - Dockerfiles are licensed under the GPL 2 or later.  
-  - Other documents are licensed under CC BY-NC-SA 4.0, Sampo Suzuki
+  - Other files are licensed under CC BY-NC-SA 4.0, Sampo Suzuki
