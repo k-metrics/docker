@@ -21,7 +21,7 @@ apt-get update \
 # Other Packages
 install2.r --error --skipinstalled -r $CRAN \
     DiagrammeR DT forecast ggparty ggrepel GGally here learnr modeest \
-    multcomp pdftools prettydoc profvis reactable rmdformats \
+    multcomp patchwork pdftools prettydoc profvis reactable rmdformats \
     skimr summarytools
 
 # Change owner and file mode
