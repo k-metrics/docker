@@ -4,7 +4,6 @@ LDIR :=
 NAME := jverse
 DFILE := Dockerfile
 PASS := 
-
 ################################################################
 # Build all images manually
 build_all:

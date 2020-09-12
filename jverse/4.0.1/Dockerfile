@@ -4,6 +4,7 @@ FROM rocker/verse:4.0.1
 ENV LANG=ja_JP.UTF-8
 ENV LC_ALL=ja_JP.UTF-8
 ENV TZ=JST
+ENV SHELL=/bin/bash
 
 # Change locale
 RUN sed -i '$d' /etc/locale.gen \

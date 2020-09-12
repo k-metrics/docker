@@ -5,3 +5,4 @@
 *.ipynb
 *.local
 /.omit/
+/_work/*
