@@ -13,6 +13,7 @@ build_all:
 	docker build -t ${IMAGE}:4.0.0 -f ./4.0.0/${DFILE} ..
 	docker build -t ${IMAGE}:4.0.1 -f ./4.0.1/${DFILE} ..
 	docker build -t ${IMAGE}:4.0.2 -f ./4.0.2/${DFILE} ..
+	docker build -t ${IMAGE}:4.0.3 -f ./4.0.3/${DFILE} ..
 	docker build -t ${IMAGE}:${TAG} -f ${DFILE} ..
 
 push_all:
@@ -22,6 +23,7 @@ push_all:
 	docker push ${IMAGE}:4.0.0
 	docker push ${IMAGE}:4.0.1
 	docker push ${IMAGE}:4.0.2
+	docker push ${IMAGE}:4.0.3
 	docker push ${IMAGE}:${TAG}
 
 

@@ -13,6 +13,7 @@
             "Connections",
             "Build",
             "VCS",
+            "Tutorial",
             "Presentation"
         ],
         "tabSet2": [
@@ -20,7 +21,6 @@
             "Plots",
             "Packages",
             "Help",
-            "Tutorial",
             "Viewer"
         ],
         "console_left_on_top": false,

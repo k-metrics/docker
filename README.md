@@ -1,7 +1,8 @@
 k-metrics docker container images
 ================
 
-`rocker` based docker container images for Machine Learning with R.
+`rocker/verse` based docker container images for Machine Learning with
+R.
 
 　
 

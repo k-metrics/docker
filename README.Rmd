@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-`rocker` based docker container images for Machine Learning with R.
+`rocker/verse` based docker container images for Machine Learning with R.
 
 　  
 
