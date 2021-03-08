@@ -20,10 +20,10 @@ apt-get update \
 
 # Other Packages
 install2.r --error --skipinstalled -r $CRAN \
-    DiagrammeR DT forecast ggparty ggrepel GGally ggvis here learnr modeest \
-    multcomp patchwork pdftools plotly prettydoc profvis reactable rmdformats \
-    skimr summarytools
-
+    DiagrammeR DT forecast ggparty ggrepel GGally here kableExtra \
+    learnr modeest multcomp patchwork pdftools prettydoc profvis \
+    reactable rmdformats skimr summarytools tufte
+    
 # Change owner and file mode
 # chown -R rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
 chown -R rstudio:rstudio /home/rstudio/.config
