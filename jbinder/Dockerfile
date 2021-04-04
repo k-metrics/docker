@@ -1,4 +1,4 @@
-FROM kmetrics/jverse:latest
+FROM kmetrics/jverse:4.0.3
 
 ENV NB_USER rstudio
 ENV NB_UID 1000
