@@ -22,7 +22,10 @@ apt-get update \
 install2.r --error --skipinstalled -r $CRAN \
     DiagrammeR DT forecast ggparty ggrepel GGally here kableExtra \
     learnr modeest multcomp patchwork pdftools prettydoc profvis \
-    reactable rmdformats skimr summarytools tufte
+    reactable reticulate rmdformats skimr summarytools tufte
+
+# install miniconda
+Rscript -e "reticulate::install_miniconda()"
     
 # Change owner and file mode
 # chown -R rstudio:rstudio /home/rstudio/.config/rstudio/rstudio-prefs.json
