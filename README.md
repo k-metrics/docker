@@ -23,20 +23,20 @@ R.
 
 　以下のコンテナイメージを公開しています。DockerHubの規約変更によりすべてのイメージはマニュアルビルドになっています。最新ビルドが欲しい場合にはご自身の環境でビルドしてください。
 
-| Image                                                      | Base image                                                      |     R3.6.x     |     R4.0.x     |     R4.1.x     | Descriptions                                                                                       |
-|------------------------------------------------------------|-----------------------------------------------------------------|:--------------:|:--------------:|:--------------:|----------------------------------------------------------------------------------------------------|
-| [jverse](https://hub.docker.com/r/kmetrics/jverse)         | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |      Yes       |      Yes       |      Yes       | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages<sup>1</sup>         |
-| [mlwr](https://hub.docker.com/r/kmetrics/mlwr)             | jverse                                                          |      Yes       |      Yes       |      Yes       | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
-| [tidymodels](https://hub.docker.com/r/kmetrics/tidymodels) | mlwr                                                            |      Yes       |      Yes       |      Yes       | Add `tidymodels` package                                                                           |
-| [blogdown](https://hub.docker.com/r/kmetrics/blogdown)     | tidymodels                                                      |      Yes       | No<sup>2</sup> | No<sup>2</sup> | Add `blogdown` package and Hugo executable                                                         |
-| keras                                                      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup> | No<sup>3</sup> | No<sup>3</sup> | Discontinued                                                                                       |
+| Image                                                      | Base image                                                      |     R3.6.x     |     R4.0.x     | R4.1.x<sup>4</sup> | Descriptions                                                                                       |
+|------------------------------------------------------------|-----------------------------------------------------------------|:--------------:|:--------------:|:------------------:|----------------------------------------------------------------------------------------------------|
+| [jverse](https://hub.docker.com/r/kmetrics/jverse)         | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |      Yes       |      Yes       |        Yes         | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages<sup>1</sup>         |
+| [mlwr](https://hub.docker.com/r/kmetrics/mlwr)             | jverse                                                          |      Yes       |      Yes       |        Yes         | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
+| [tidymodels](https://hub.docker.com/r/kmetrics/tidymodels) | mlwr                                                            |      Yes       |      Yes       |        Yes         | Add `tidymodels` package                                                                           |
+| [blogdown](https://hub.docker.com/r/kmetrics/blogdown)     | tidymodels                                                      |      Yes       | No<sup>2</sup> |   No<sup>2</sup>   | Add `blogdown` package and Hugo executable                                                         |
+| keras                                                      | [rocker/tensorflow](https://hub.docker.com/r/rocker/tensorflow) | No<sup>3</sup> | No<sup>3</sup> |   No<sup>3</sup>   | Discontinued                                                                                       |
 
 <sup>1</sup> 3.6.x images NOT include useful R packages  
 <sup>2</sup> rocker/verse:4.x.x and latest include `blogdown` package
 and Hugo executable  
-<sup>3</sup> rocker/tensorflow no longer update
-
-　
+<sup>3</sup> rocker/tensorflow no longer update  
+<sup>4</sup> 4.1.x images include `reticulate` package and
+[miniconda](https://docs.conda.io/en/latest/miniconda.html) 　
 
 # Usage
 
@@ -80,7 +80,7 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 
 　
 
-## RStudio Preference（4.x.x and latest tag Only）
+## RStudio Preferencehi
 
 　`4.x.x` タグならびに `latest`
 タグのコンテナイメージではRStudioの設定をデフォルトから変更しています。設定ファイルは
@@ -96,6 +96,7 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 -   [rocker-org](https://github.com/rocker-org)
 -   [tokyor/rstudio](https://hub.docker.com/r/tokyor/rstudio)
 -   [RStudio Package Manager](https://packagemanager.rstudio.com/)
+-   [Package \`reticulate\`\`](https://rstudio.github.io/reticulate/)
 
 　
 

@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 　以下のコンテナイメージを公開しています。DockerHubの規約変更によりすべてのイメージはマニュアルビルドになっています。最新ビルドが欲しい場合にはご自身の環境でビルドしてください。  
 
-| Image                                                      | Base image                                                      | R3.6.x | R4.0.x | R4.1.x | Descriptions                                                                                       |
+| Image                                                      | Base image                                                      | R3.6.x | R4.0.x | R4.1.x^4^ | Descriptions                                                                                       |
 |------------------------------------------------------------|-----------------------------------------------------------------|:------:|:------:|:------:|----------------------------------------------------------------------------------------------------|
 | [jverse](https://hub.docker.com/r/kmetrics/jverse)         | [rocker/verse](https://hub.docker.com/r/rocker/verse)           |  Yes   |  Yes   |  Yes   | Localizing into Japanese (Add Japanese fonts and locale) and useful R packages^1^                  |
 | [mlwr](https://hub.docker.com/r/kmetrics/mlwr)             | jverse                                                          |  Yes   |  Yes   |  Yes   | Add R packages for [Machine Learning with R](https://www.shoeisha.co.jp/book/detail/9784798145112) |
@@ -33,8 +33,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ^1^ 3.6.x images NOT include useful R packages  
 ^2^ rocker/verse:4.x.x and latest include `blogdown` package and Hugo executable  
-^3^ rocker/tensorflow no longer update
-
+^3^ rocker/tensorflow no longer update  
+^4^ 4.1.x images include `reticulate` package and [miniconda](https://docs.conda.io/en/latest/miniconda.html)
 　
 
 # Usage
@@ -72,7 +72,7 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 
 　
 
-## RStudio Preference（4.x.x and latest tag Only）
+## RStudio Preferencehi
 
 　`4.x.x` タグならびに `latest` タグのコンテナイメージではRStudioの設定をデフォルトから変更しています。設定ファイルは `rstudio-prefs.json` で、好みに応じて変更することが可能です。変更した場合は `jverse` から順次ビルドし直すかDockerfileを変更してビルドし直してください。なお、設定項目の詳細については[こちら](https://docs.rstudio.com/ide/server-pro/1.3.820-1/session-user-settings.html#session-user-settings)を参照してください。
 
@@ -84,6 +84,7 @@ sudo docker run -p 8787:8787 -v リンクするローカルパス:/home/rstudio/
 -   [rocker-org](https://github.com/rocker-org)
 -   [tokyor/rstudio](https://hub.docker.com/r/tokyor/rstudio)
 -   [RStudio Package Manager](https://packagemanager.rstudio.com/)
+-   [Package `reticulate``](https://rstudio.github.io/reticulate/)
 
 　
 
